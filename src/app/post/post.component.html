@@ -1,65 +1,74 @@
 <div id="{{post.id}}"
-	class="w-full flex flex-col gap-2 p-4 border rounded-xl">
-	<div class="flex justify-between items-center">
-		<div class="flex gap-4 items-center">
+	class="w-full flex flex-col gap-3 p-4 border border-gray-300 rounded-xl text-gray-100
+		bg-gray-900 overflow-hidden">
+	<div class="max-w-full flex justify-between items-center">
+		<div class="flex gap-2 items-center">
 			<img [src]="post.community_image" alt="{{post.community_name}}"
-			class="w-10 rounded-full">
-			<div class="flex gap-2 items-center">
-				<span>b/{{ post.community_name }}</span>
-				<span class="text-xs">{{ post.posted_date }}</span>
+				class="w-8 rounded-full">
+			<div class="flex flex-row gap-2 items-center">
+				<span class="font-bold text-sm sm:text-base my-auto">b/{{ post.community_name }}</span>
+				<span class="text-xs text-gray-300 my-auto">{{ post.posted_date }}</span>
 			</div>
 		</div>
-		<div>
-			<button class="bg-gray-200 p-2 text-sm rounded-xl hover:cursor-pointer">{{ post.on_community === 'true' ? 'Unfollow' : 'Follow' }}</button>
+		<div class="hidden sm:block">
+			<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
+				hover:bg-gradient-to-br hover:cursor-pointer rounded-lg text-sm px-3 py-1.5 text-center">
+					{{ post.on_community === 'true' ? 'Unfollow' : 'Follow' }}
+			</button>
 		</div>
 	</div>
-	<div>
+	<div class="max-w-full px-1 text-sm sm:text-base">
 		<h1>{{ post.title }}</h1>
 	</div>
-	<div class="w-full rounded-xl overflow-hidden max-h-96">
-		<img [src]="post.image" alt=""
-		class="w-full bg-cover bg-center">
+	<div class="w-full rounded-xl overflow-hidden max-h-96 flex items-center justify-center">
+		<img [src]="post.image" alt="" class="w-full bg-cover bg-center object-cover">
 	</div>
-	<div class="flex items-center justify-between">
-		<div class="flex gap-2 bg-gray-200 px-2 py-1 rounded-xl">
-			<button id="aura-up" class="hover:cursor-pointer">
-				<svg class="size-4" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-				viewBox="0 0 511.947 511.947" xml:space="preserve">
-					<g>
+	<div class="flex flex-col-reverse gap-2 items-center sm:flex-row sm:justify-between">
+		<div class="flex gap-2 bg-gray-900 px-2 py-1 rounded-full border border-gray-700">
+			<div class="flex flex-row items-center justify-start gap-2">
+				<button id="aura-up" class="size-6 hover:cursor-pointer bg-gray-700 rounded-full transition-colors hover:bg-blue-400 sm:size-7">
+					<svg class="p-1.5 rounded-full fill-blue-400 w-full h-full hover:fill-gray-900" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					viewBox="0 0 511.947 511.947" xml:space="preserve">
 						<g>
-							<path d="M476.847,216.373L263.513,3.04c-4.267-4.053-10.88-4.053-15.04,0L35.14,216.373c-4.16,4.16-4.16,10.88-0.107,15.04
-								c2.027,2.027,4.8,3.2,7.573,3.2h128V501.28c0,5.867,4.8,10.667,10.667,10.667h149.333c5.867,0,10.667-4.8,10.667-10.667V234.613
-								h128c5.867,0,10.667-4.8,10.667-10.667C479.94,221.067,478.873,218.4,476.847,216.373z M330.607,213.28
-								c-5.867,0-10.667,4.8-10.667,10.667v266.667h-128V223.947c0-5.867-4.8-10.667-10.667-10.667H68.42L255.94,25.547L443.567,213.28
-								H330.607z"/>
+							<g>
+								<path d="M476.847,216.373L263.513,3.04c-4.267-4.053-10.88-4.053-15.04,0L35.14,216.373c-4.16,4.16-4.16,10.88-0.107,15.04
+									c2.027,2.027,4.8,3.2,7.573,3.2h128V501.28c0,5.867,4.8,10.667,10.667,10.667h149.333c5.867,0,10.667-4.8,10.667-10.667V234.613
+									h128c5.867,0,10.667-4.8,10.667-10.667C479.94,221.067,478.873,218.4,476.847,216.373z M330.607,213.28
+									c-5.867,0-10.667,4.8-10.667,10.667v266.667h-128V223.947c0-5.867-4.8-10.667-10.667-10.667H68.42L255.94,25.547L443.567,213.28
+									H330.607z" stroke-width="100"/>
+							</g>
 						</g>
-					</g>
-				</svg>
-			</button>
-			<span>{{ post.aura }}</span>
-			<button id="aura-down" class="hover:cursor-pointer">
-				<svg class="size-4 rotate-180" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-				viewBox="0 0 511.947 511.947" xml:space="preserve">
-					<g>
+					</svg>
+				</button>
+				<span class="text-sm hover:cursor-default">{{ post.aura }}</span>
+				<button id="aura-down" class="size-6 hover:cursor-pointer bg-gray-700 rounded-full transition-colors hover:bg-red-400 sm:size-7">
+					<svg class="p-1.5 rounded-full rotate-180 fill-red-400 w-full h-full hover:fill-gray-900" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					viewBox="0 0 511.947 511.947" xml:space="preserve">
 						<g>
-							<path d="M476.847,216.373L263.513,3.04c-4.267-4.053-10.88-4.053-15.04,0L35.14,216.373c-4.16,4.16-4.16,10.88-0.107,15.04
-								c2.027,2.027,4.8,3.2,7.573,3.2h128V501.28c0,5.867,4.8,10.667,10.667,10.667h149.333c5.867,0,10.667-4.8,10.667-10.667V234.613
-								h128c5.867,0,10.667-4.8,10.667-10.667C479.94,221.067,478.873,218.4,476.847,216.373z M330.607,213.28
-								c-5.867,0-10.667,4.8-10.667,10.667v266.667h-128V223.947c0-5.867-4.8-10.667-10.667-10.667H68.42L255.94,25.547L443.567,213.28
-								H330.607z"/>
+							<g>
+								<path d="M476.847,216.373L263.513,3.04c-4.267-4.053-10.88-4.053-15.04,0L35.14,216.373c-4.16,4.16-4.16,10.88-0.107,15.04
+									c2.027,2.027,4.8,3.2,7.573,3.2h128V501.28c0,5.867,4.8,10.667,10.667,10.667h149.333c5.867,0,10.667-4.8,10.667-10.667V234.613
+									h128c5.867,0,10.667-4.8,10.667-10.667C479.94,221.067,478.873,218.4,476.847,216.373z M330.607,213.28
+									c-5.867,0-10.667,4.8-10.667,10.667v266.667h-128V223.947c0-5.867-4.8-10.667-10.667-10.667H68.42L255.94,25.547L443.567,213.28
+									H330.607z"/>
+							</g>
 						</g>
-					</g>
-				</svg>
-			</button>
-			<span class="border border-gray-500"></span>
-			<button id="comments" class="hover:cursor-pointer">
-				<svg class="size-5" fill="#000000" width="800px" height="800px" viewBox="0 0 1024 1024" t="1569682881658" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8185" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs><path d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40zM293 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40z" p-id="8186"></path><path d="M894 345c-48.1-66-115.3-110.1-189-130v0.1c-17.1-19-36.4-36.5-58-52.1-163.7-119-393.5-82.7-513 81-96.3 133-92.2 311.9 6 439l0.8 132.6c0 3.2 0.5 6.4 1.5 9.4 5.3 16.9 23.3 26.2 40.1 20.9L309 806c33.5 11.9 68.1 18.7 102.5 20.6l-0.5 0.4c89.1 64.9 205.9 84.4 313 49l127.1 41.4c3.2 1 6.5 1.6 9.9 1.6 17.7 0 32-14.3 32-32V753c88.1-119.6 90.4-284.9 1-408zM323 735l-12-5-99 31-1-104-8-9c-84.6-103.2-90.2-251.9-11-361 96.4-132.2 281.2-161.4 413-66 132.2 96.1 161.5 280.6 66 412-80.1 109.9-223.5 150.5-348 102z m505-17l-8 10 1 104-98-33-12 5c-56 20.8-115.7 22.5-171 7l-0.2-0.1C613.7 788.2 680.7 742.2 729 676c76.4-105.3 88.8-237.6 44.4-350.4l0.6 0.4c23 16.5 44.1 37.1 62 62 72.6 99.6 68.5 235.2-8 330z" p-id="8187"></path><path d="M433 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40z" p-id="8188"></path></svg>
-			</button>
-			<span>{{ post.comments }}</span>
+					</svg>
+				</button>
+			</div>
+			<div class="flex items-center py-1">
+				<span class="border border-gray-700 h-full"></span>
+			</div>
+			<div class="flex flex-row items-center justify-start gap-2">
+				<button id="comments" class="hover:cursor-pointer flex flex-row gap-2 hover:bg-gray-700 px-2 py-1 rounded-full">
+					<svg class="size-5" fill="#f2f2f2" width="800px" height="800px" viewBox="0 0 1024 1024" t="1569682881658" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8185" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs><path d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40zM293 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40z" p-id="8186"></path><path d="M894 345c-48.1-66-115.3-110.1-189-130v0.1c-17.1-19-36.4-36.5-58-52.1-163.7-119-393.5-82.7-513 81-96.3 133-92.2 311.9 6 439l0.8 132.6c0 3.2 0.5 6.4 1.5 9.4 5.3 16.9 23.3 26.2 40.1 20.9L309 806c33.5 11.9 68.1 18.7 102.5 20.6l-0.5 0.4c89.1 64.9 205.9 84.4 313 49l127.1 41.4c3.2 1 6.5 1.6 9.9 1.6 17.7 0 32-14.3 32-32V753c88.1-119.6 90.4-284.9 1-408zM323 735l-12-5-99 31-1-104-8-9c-84.6-103.2-90.2-251.9-11-361 96.4-132.2 281.2-161.4 413-66 132.2 96.1 161.5 280.6 66 412-80.1 109.9-223.5 150.5-348 102z m505-17l-8 10 1 104-98-33-12 5c-56 20.8-115.7 22.5-171 7l-0.2-0.1C613.7 788.2 680.7 742.2 729 676c76.4-105.3 88.8-237.6 44.4-350.4l0.6 0.4c23 16.5 44.1 37.1 62 62 72.6 99.6 68.5 235.2-8 330z" p-id="8187"></path><path d="M433 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40z" p-id="8188"></path></svg>
+					<span class="text-sm">{{ post.comments }}</span>
+				</button>
+			</div>
 		</div>
-		<div class="flex gap-4">
+		<div class="flex gap-2 hover:cursor-default">
 			<span *ngFor="let item of post.tags"
-			class="bg-gray-200 px-2 py-1 rounded-lg border border-gray-500 text-sm">{{item}}</span>
+			class="bg-blue-900  text-blue-300 px-2.5 py-1 rounded-lg border text-xs sm:text-sm">{{item}}</span>
 		</div>
 	</div>
 </div>
