@@ -21,9 +21,32 @@ export class PostComponent {
     'posted_date': '9 hours ago',
     'tags': [
       'Social',
-      'Sports',
-      'Games'
+      'Health',
+      'Gaming',
+      'Science',
+      'Art'
     ],
-    'on_community': 'false'
+    'on_community': 'false',
+    'nsfw': 'true'
+  }
+
+  private tagsCategory: { [key: string] : string} = {
+    social: 'blue',
+    health: 'purple',
+    gaming: 'red',
+    science: 'green',
+    art: 'orange'
+  }
+
+  public getLabelColor(label: string) {
+    const color = this.tagsCategory[label.toLowerCase()]
+    console.log(`${label} : ${color}`)
+    return color ? `bg-${color}-900 text-${color}-300` : `bg-gray-900 text-gray-300`;
+  }
+
+  public nsfw: boolean = this.post.nsfw.toLocaleLowerCase() === 'true';
+
+  public disableNSFW() {
+    this.nsfw = false;
   }
 }
