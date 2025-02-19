@@ -4,11 +4,11 @@
     <img src="/assets/logo_header_mini.png" alt="Logo" class="block md:hidden w-10"/>
   </a>
   <div
-    class="flex flex-row items-center justify-between border-1 border-gray-500 rounded-lg p-0.5 md:w-140 md:h-9 md:p-1">
+    class="flex flex-row items-center justify-between border-1 border-gray-500 rounded-lg p-0.5 md:w-140 md:h-9 md:p-1 transition-colors duration-300">
     <input type="text" placeholder="b/group/user"
            class="pl-1 pb-1 text-xs text-gray-50 focus:outline-none md:w-125 md:pl-2 md:pb-1 md:text-l bg-transparent"/>
     <button
-      class="p-0.5 bg-gray-500 rounded-md text-xs text-gray-50 hover:bg-gray-600 transition-colors items-center md:w-25 md:h-7 md:p-2 md:pb-2 md:pl-3 md:text-l flex flex-row justify-between">
+      class="p-0.5 bg-gray-500 rounded-md text-xs text-gray-50 hover:bg-gray-600 items-center md:w-25 md:h-7 md:p-2 md:pb-2 md:pl-3 md:text-l flex flex-row justify-between cursor-pointer transition-colors duration-300">
       <span class="brightness-0 invert">
         <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-5 md:w-7">
       </span>
@@ -18,7 +18,7 @@
   <div class="hidden md:flex flex-row w-60 justify-around items-center text-l text-gray-50">
     <a href="#" class="rounded-lg text-center pb-1 hover:text-gray-200">Sign in</a>
     <a href="#"
-       class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors">
+       class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors duration-300">
       <span class="pb-1">Sign up</span>
       <span class="ml-1">
         <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-7">
@@ -26,44 +26,31 @@
     </a>
   </div>
   <div class="card flex justify-center md:hidden">
-<p-menu #menu [model]="items" [popup]="true" class="custom-menu flex justify-center w-auto md:w-auto bg-gray-800 text-white">
-    <ng-template #start>
-      <span class="inline-flex items-center gap-1 px-2 py-2">
-          <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg"
-               class="block mx-auto">
-              <path d="..." fill="var(--primary-color)"/>
-          </svg>
-          <span class="text-xl font-semibold">
-              PRIME<span class="text-primary">APP</span>
-          </span>
-      </span>
-    </ng-template>
-    <ng-template #submenuheader let-item>
-      <span class="text-primary font-bold">{{ item.label }}</span>
-    </ng-template>
-    <ng-template #item let-item>
-      <a pRipple class="flex items-center p-menu-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-        <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
-        <span *ngIf="item.shortcut"
-              class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">
+    <p-menu #menu [model]="items" [popup]="true"
+            class="custom-menu flex justify-center w-auto md:w-auto text-black">
+      <ng-template #submenuheader let-item>
+        <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
+      </ng-template>
+      <ng-template #item let-item>
+        <a pRipple class="flex items-center p-menu-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+          <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
+          <span *ngIf="item.shortcut"
+                class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">
               {{ item.shortcut }}
           </span>
-      </a>
-    </ng-template>
-    <ng-template #end>
-      <button pRipple
-              class="relative overflow-hidden w-full border-0 bg-transparent flex items-start p-2 pl-4 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-none cursor-pointer transition-colors duration-200">
-        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="mr-2"
-                  shape="circle"/>
-        <span class="inline-flex flex-col">
-              <span class="font-bold">Amy Elsner</span>
-              <span class="text-sm">Admin</span>
-          </span>
-      </button>
-    </ng-template>
-  </p-menu>
-  <p-button (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"></p-button>
-</div>
+        </a>
+      </ng-template>
+      <ng-template #end>
+        <button pRipple
+                class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 hover:bg-gray-200 dark:hover:bg-surface-800 rounded-lg transition-colors duration-200 cursor-pointer">
+          <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="pl-2 mr-7"
+                    shape="circle"/>
+          <span class="font-bold text-left whitespace-nowrap pr-2 text-center">Horny Horses</span>
+        </button>
+      </ng-template>
+    </p-menu>
+    <p-button (click)="menu.toggle($event)" icon="pi pi-bars" class="hamburger text-blue-200"></p-button>
+  </div>
 </header>

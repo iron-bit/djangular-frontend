@@ -24,17 +24,17 @@ export class HeaderComponent implements OnInit {
                 separator: true
             },
             {
-                label: 'Documents',
+                label: 'Posts',
                 items: [
                     {
                         label: 'New',
                         icon: 'pi pi-plus',
-                        shortcut: '⌘+N'
+                        shortcut: 'ctrl+N'
                     },
                     {
                         label: 'Search',
                         icon: 'pi pi-search',
-                        shortcut: '⌘+S'
+                        shortcut: 'ctrl+S'
                     }
                 ]
             },
@@ -42,19 +42,19 @@ export class HeaderComponent implements OnInit {
                 label: 'Profile',
                 items: [
                     {
-                        label: 'Settings',
-                        icon: 'pi pi-cog',
-                        shortcut: '⌘+O'
+                        label: 'Your Profile',
+                        icon: 'pi pi-user',
+                        shortcut: 'ctrl+P'
                     },
                     {
-                        label: 'Messages',
-                        icon: 'pi pi-inbox',
-                        badge: '2'
+                        label: 'Your Posts',
+                        icon: 'pi pi-clipboard',
+                        badge: '16', // Poner el número de posts
                     },
                     {
                         label: 'Logout',
                         icon: 'pi pi-sign-out',
-                        shortcut: '⌘+Q'
+                        shortcut: 'ctrl+Q'
                     }
                 ]
             },
