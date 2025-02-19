@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './dock-izq.component.html',
   styleUrl: './dock-izq.component.css',
 })
-export class DockIzqComponent {}
+export class DockIzqComponent {
+  dock_izq = {
+    
+  };
+}
