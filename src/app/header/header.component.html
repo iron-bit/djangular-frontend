@@ -1,29 +1,52 @@
-<header class="flex flex-row justify-around gap-30 items-center p-2 bg-gray-900">
+<header class="flex flex-row justify-around items-center py-2 bg-gray-900">
   <a href="#">
-    <img src="/assets/logo_header.png" alt="Logo" class="h-18 w-39"/>
+    <img src="/assets/logo_header.png" alt="Logo" class="hidden md:block h-18 w-39"/>
+    <img src="/assets/logo_header_mini.png" alt="Logo" class="block md:hidden w-10"/>
   </a>
   <div
-    class="flex flex-row items-center justify-between w-140 h-9 border-2 border-gray-500 rounded-xl p-1">
+    class="flex flex-row items-center justify-around border-1 border-gray-500 rounded-lg p-0.5 w-55 lg:min-w-150 md:w-90 md:h-9 md:p-1 transition-colors duration-300">
     <input type="text" placeholder="b/group/user"
-           class="w-125 pl-2 pb-1 text-l text-gray-50 bg-transparent focus:outline-none"/>
+           class="pl-1 pb-1 text-xs text-gray-50 focus:outline-none w-full md:pl-2 md:pb-1 md:text-[16px] bg-transparent"/>
     <button
-      class="flex flex-row justify-between w-25 h-7 p-2 pb-2 pl-3 bg-gray-500 rounded-lg text-l text-gray-50 items-center">
-      Search
-      <span class="ml-1 pt-0.5 brightness-0 invert">
-        <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-7">
+      class="p-0.5 bg-gray-500 rounded-md text-xs text-gray-50 hover:bg-gray-600 items-center md:w-25 md:h-7 md:p-2 md:pb-2 md:pl-3 md:text-l flex flex-row justify-between cursor-pointer transition-colors duration-300">
+      <span class="hidden md:block ml-1 pt-0.5 md:text-[16px] pb-0.5">Search</span>
+      <span class="brightness-0 invert md:hidden lg:block">
+        <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-6 lg:ml-1 lg:mt-0.5">
       </span>
     </button>
   </div>
-  <div class="flex flex-row w-60 justify-around items-center text-l text-gray-50">
+  <div class="hidden md:flex flex-row w-60 justify-around items-center text-l text-gray-50">
     <a href="#" class="rounded-lg text-center pb-1 hover:text-gray-200">Sign in</a>
     <a href="#"
-       class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200">
-      <span
-        class="pb-1">Sign up</span>
-      <!-- go to sign up page -->
+       class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors duration-300">
+      <span class="pb-1">Sign up</span>
       <span class="ml-1">
         <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-7">
       </span>
     </a>
+  </div>
+  <div class="card flex justify-center md:hidden">
+    <p-menu #menu [model]="items" [popup]="true"
+            class="custom-menu flex justify-center w-auto md:w-auto text-gray-100">
+      <ng-template #submenuheader let-item>
+        <span class="block text-primary font-semibold w-full text-center ">{{ item.label }}</span>
+      </ng-template>
+      <ng-template #item let-item>
+        <a pRipple class="flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
+          <span [class]="item.icon"></span>
+          <span class="ml-2 mb-2">{{ item.label }}</span>
+          <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
+        </a>
+      </ng-template>
+      <ng-template #end>
+        <button pRipple
+                class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg transition-colors duration-200 cursor-pointer">
+          <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="pl-2 mr-7"
+                    shape="circle"/>
+          <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
+        </button>
+      </ng-template>
+    </p-menu>
+    <p-button (click)="menu.toggle($event)" icon="pi pi-bars" class="hamburger text-blue-200"></p-button>
   </div>
 </header>
