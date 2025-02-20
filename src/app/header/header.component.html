@@ -26,10 +26,10 @@
     </a>
   </div>
   <div class="card flex justify-center md:hidden">
-    <p-menu #menu [model]="items" [popup]="true"
+    <p-menu #menu [model]="registered ? items : default_items" [popup]="true"
             class="custom-menu flex justify-center w-auto md:w-auto text-gray-100">
       <ng-template #submenuheader let-item>
-        <span class="block text-primary font-semibold w-full text-center ">{{ item.label }}</span>
+        <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
       </ng-template>
       <ng-template #item let-item>
         <a pRipple class="flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
@@ -38,12 +38,12 @@
           <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
         </a>
       </ng-template>
-      <ng-template #end>
+      <ng-template #end *ngIf="registered">
         <button pRipple
                 class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg transition-colors duration-200 cursor-pointer">
           <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="pl-2 mr-7"
                     shape="circle"/>
-          <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
+          <span class="font-bold whitespace-nowrap pr-2"> {{ registered ? user.nickname : "Guest" }} </span>
         </button>
       </ng-template>
     </p-menu>

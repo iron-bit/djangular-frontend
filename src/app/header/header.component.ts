@@ -17,8 +17,28 @@ import {NgIf, NgStyle} from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   items: MenuItem[] | undefined;
+  default_items: MenuItem[] | undefined;
 
   ngOnInit() {
+
+    this.default_items = [{
+        separator: true
+      },
+      {
+        label: 'Account',
+        items: [
+          {
+            label: 'Sign In',
+            icon: 'pi pi-sign-in',
+          },
+          {
+            label: 'Sign Up',
+            icon: 'pi pi-user-plus',
+          }
+        ]
+      }
+    ]
+
     this.items = [{
       separator: true
     },
@@ -58,14 +78,16 @@ export class HeaderComponent implements OnInit {
       }];
   }
 
+  registered = true;
+
   user = {
     'id': '1',
     'name': 'John Doe',
     'nickname': 'johndoe123',
     'email': 'john@mail.com',
     'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
-    'age' : 25,
-    'creation-time' : '19-02-2025',
+    'age': 25,
+    'creation-time': '19-02-2025',
   }
 
 }
