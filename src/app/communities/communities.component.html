@@ -1,47 +1,43 @@
-<div
-  class="hidden xl:inline-flex flex-col border-2 border-gray-500 rounded-sm bg-gray-900"
->
-  <h1 class="mb-2 text-[20px] text-blue-200 italic pr-5 pl-5">
-    Your Communities
-  </h1>
+<div class="xl:inline-flex flex-col border-2 border-gray-500 rounded-sm bg-gray-900 p-4">
+  <h1 class="mb-2 text-[20px] text-blue-200 italic">Your Communities</h1>
 
-  <div class="flex flex-col justify-center gap-2">
-    <div *ngFor="let community of communitiesIniciales">
-      <a href="#" class="flex flex-row pt-2 pb-2 justify-evenly">
-        <img
-          class="rounded-full size-10"
-          [src]="community.community_image"
-          alt="Icono"
-        />
-        <div class="flex flex-col items-center text-white">
-          <h3
-            class="text-[12px] font-bold"
-            title="b/{{ community.community_name }}"
-          >
-            b/{{
-              community.community_name.length > 12
-                ? (community.community_name | slice : 0 : 12) + "..."
-                : community.community_name
-            }}
-          </h3>
-          <p class="text-[10px]">{{ community.community_members }} members</p>
-        </div>
-      </a>
+  <div
+    class="overflow-hidden transition-all duration-300 ease-in-out"
+    [ngClass]="ver6Comunidades ? 'max-h-[320px]' : 'max-h-[185px]'"
+  >
+    <div class="flex flex-col gap-2">
+      <div *ngFor="let community of communitiesList">
+        <a
+          href="#"
+          class="flex flex-row pt-2 pb-2 justify-evenly transition-all duration-200 ease-in-out hover:bg-gray-800 rounded-md"
+        >
+          <img
+            class="rounded-full w-10 h-10"
+            [src]="community.community_image"
+            alt="Icono"
+          />
+          <div class="flex flex-col items-center text-white">
+            <h3
+              class="text-[12px] font-bold"
+              title="b/{{ community.community_name }}"
+            >
+              b/{{
+                community.community_name.length > 12
+                  ? (community.community_name | slice: 0 : 12) + '...'
+                  : community.community_name
+              }}
+            </h3>
+            <p class="text-[10px]">{{ community.community_members }} members</p>
+          </div>
+        </a>
+      </div>
     </div>
-
-    <p
-      *ngIf="!ver6Comunidades"
-      (click)="action()"
-      class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer"
-    >
-      Ver más...
-    </p>
-    <p
-      *ngIf="ver6Comunidades"
-      (click)="action()"
-      class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer"
-    >
-      Ver menos...
-    </p>
   </div>
+
+  <p
+    (click)="action()"
+    class="text-white hover:underline text-xs mt-2 cursor-pointer"
+  >
+    {{ ver6Comunidades ? 'Ver menos...' : 'Ver más...' }}
+  </p>
 </div>
