@@ -30,18 +30,21 @@ export class PostComponent {
     'nsfw': 'true'
   }
 
+  private maxShowTags = 3;
+  public tags = this.post.tags.slice(0, this.maxShowTags);
+
   private tagsCategory: { [key: string] : string} = {
     social: 'blue',
     health: 'purple',
-    gaming: 'red',
-    science: 'green',
+    gaming: 'rose',
+    science: 'emerald',
     art: 'orange'
   }
 
   public getLabelColor(label: string) {
     const color = this.tagsCategory[label.toLowerCase()]
     console.log(`${label} : ${color}`)
-    return color ? `bg-${color}-900 text-${color}-300` : `bg-gray-900 text-gray-300`;
+    return `${color}-label`;
   }
 
   public nsfw: boolean = this.post.nsfw.toLocaleLowerCase() === 'true';
