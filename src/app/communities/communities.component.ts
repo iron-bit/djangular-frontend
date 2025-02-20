@@ -10,27 +10,27 @@ import { CommonModule } from '@angular/common';
 export class CommunitiesComponent {
   communitiesList = [
     {
-      community_name: 'Community',
+      community_name: 'MasticaMuelas',
       community_image: 'assets/1.jpg',
       community_members: '123.123.123',
     },
     {
-      community_name: 'Community',
+      community_name: 'RevientaCocos400',
       community_image: 'assets/1.jpg',
       community_members: '123.123.123',
     },
     {
-      community_name: 'Community',
+      community_name: 'Community132123132',
       community_image: 'assets/1.jpg',
       community_members: '123.123.123',
     },
     {
-      community_name: 'Community',
+      community_name: 'SpaceX',
       community_image: 'assets/1.jpg',
       community_members: '123.123.123',
     },
     {
-      community_name: 'Community',
+      community_name: 'LaCommunidad',
       community_image: 'assets/1.jpg',
       community_members: '123.123.123',
     },
@@ -42,14 +42,14 @@ export class CommunitiesComponent {
   ];
 
   communitiesIniciales = this.communitiesList.slice(0, 3);
-  ver6 = false;
+  ver6Comunidades = false;
 
-  toggleCommunities() {
-    if (this.ver6) {
+  action() {
+    if (this.ver6Comunidades) {
       this.communitiesIniciales = this.communitiesList.slice(0, 3);
     } else {
       this.communitiesIniciales = this.communitiesList;
     }
-    this.ver6 = !this.ver6;
+    this.ver6Comunidades = !this.ver6Comunidades;
   }
 }

@@ -1,18 +1,47 @@
-<div class="hidden xl:inline-flex flex-col border-2 border-gray-500 rounded-sm bg-gray-900">
-  <h1 class="mb-2 text-[20px] text-blue-200 italic pr-5 pl-5">Your Communities</h1>
+<div
+  class="hidden xl:inline-flex flex-col border-2 border-gray-500 rounded-sm bg-gray-900"
+>
+  <h1 class="mb-2 text-[20px] text-blue-200 italic pr-5 pl-5">
+    Your Communities
+  </h1>
 
-  <div class="flex flex-col justify-center gap-2 transform transition">
-    <div *ngFor="let community of communitiesIniciales; let last = last">
+  <div class="flex flex-col justify-center gap-2">
+    <div *ngFor="let community of communitiesIniciales">
       <a href="#" class="flex flex-row pt-2 pb-2 justify-evenly">
-        <img class="rounded-full size-10" [src]="community.community_image" alt="Icono" />
+        <img
+          class="rounded-full size-10"
+          [src]="community.community_image"
+          alt="Icono"
+        />
         <div class="flex flex-col items-center text-white">
-          <h3 class="text-[12px] font-bold">b/ {{ community.community_name }}</h3>
+          <h3
+            class="text-[12px] font-bold"
+            title="b/{{ community.community_name }}"
+          >
+            b/{{
+              community.community_name.length > 12
+                ? (community.community_name | slice : 0 : 12) + "..."
+                : community.community_name
+            }}
+          </h3>
           <p class="text-[10px]">{{ community.community_members }} members</p>
         </div>
       </a>
-      <div *ngIf="last" class="inver6"></div>
     </div>
-    <p *ngIf="!ver6" (click)="toggleCommunities()" class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer">Ver más...</p>
-    <p *ngIf="ver6" (click)="toggleCommunities()" class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer">Ver menos...</p>
+
+    <p
+      *ngIf="!ver6Comunidades"
+      (click)="action()"
+      class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer"
+    >
+      Ver más...
+    </p>
+    <p
+      *ngIf="ver6Comunidades"
+      (click)="action()"
+      class="font-light text-xs pt-2.5 pl-5 pb-3 text-white hover:underline cursor-pointer"
+    >
+      Ver menos...
+    </p>
   </div>
 </div>
