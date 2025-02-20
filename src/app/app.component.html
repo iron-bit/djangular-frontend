@@ -1,10 +1,9 @@
 <app-header></app-header>
 <main class="relative">
-  <app-dock-izq class="fixed m-20"></app-dock-izq>
-  <div class="flex fixed right-4 pt-30 pr-15 scale-135">
-    <app-communities class="ml-auto"></app-communities>
+  <app-dock-izq class="fixed pt-15 m-5 xl:ml-20 sm:grid sm:grid-cols-3"></app-dock-izq>
+  <div class="fixed right-4 top-[160px] pr-15">
+    <app-communities class="ml-auto transition-all duration-300 ease-in-out"></app-communities>
   </div>
-
   <div class="flex flex-col gap-6 px-12 py-4 md:px-32 xl:px-96">
     <app-post></app-post>
     <app-post></app-post>

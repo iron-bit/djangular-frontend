@@ -1,69 +1,20 @@
 <div class="border-2 border-gray-500 inline-block rounded-sm bg-gray-900">
   <ul
-    class="flex flex-row sm:flex-col overflow-x-auto sm:overflow-x-visible space-x-5 sm:space-x-0 sm:space-y-2"
+    class="grid grid-col-1 sm:grid-col-1 overflow-x-auto sm:overflow-x-visible space-x-5 sm:space-x-0 sm:space-y-2"
   >
-    <li class="flex-shrink-0">
+    <li
+      *ngFor="let item of dock_izq.tags"
+      class="flex-shrink-0"
+      (click)="seleccionarTag(item.tag)"
+    >
       <a href="#" class="block p-2">
         <img
-          src="assets/all.svg"
-          alt="Icono"
-          class="size-15 filter grayscale transition-all hover:grayscale-0 hover:drop-shadow-lg hover:scale-110"
+          [src]="item.icon"
+          [alt]="item.tag"
+          class="size-13 filter brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg hover:scale-110 duration-300"
+          [title]="item.tag"
         />
       </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/group.svg"
-          alt="Icono"
-          class="size-15 brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg hover:scale-110"
-        />
-      </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/salud.svg"
-          alt="Icono"
-          class="size-15 filter grayscale transition-all hover:grayscale-0 hover:drop-shadow-lg hover:scale-110"
-        />
-      </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/games.svg"
-          alt="Icono"
-          class="size-15 brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg hover:scale-120"
-        />
-      </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/arte.svg"
-          alt="Icono"
-          class="size-15 filter grayscale transition-all hover:grayscale-0 hover:drop-shadow-lg hover:scale-110"
-        />
-      </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/ciencia.svg"
-          alt="Icono"
-          class="size-15 brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg hover:scale-110"
-        />
-      </a>
-    </li>
-    <li class="flex-shrink-0">
-      <a href="#" class="block p-2">
-        <img
-          src="assets/dark-light.svg"
-          alt="Icono"
-          class="size-15 filter grayscale transition-all hover:grayscale-0 hover:drop-shadow-lg hover:scale-110"
-        />
-      </a>
-    </li>
+    </li>    
   </ul>
 </div>
