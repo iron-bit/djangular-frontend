@@ -1,11 +1,24 @@
 :host >>> .p-menu {
   background-color: #101828;
+  width: 250px;
   border: 1px solid #6a6a6a;
   border-radius: 10px;
   padding: 10px 10px 5px 10px;
-  box-shadow: -3px 2px 20px 5px rgba(0,0,0,0.60);
+  box-shadow: -3px 2px 20px 5px rgba(0, 0, 0, 0.60);
+}
+
+.toggle {
+  right: auto !important;
+  left: auto !important;
 }
 
 :host >>> .hamburger .pi {
   font-size: 25px;
+}
+
+:host >>> .p-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 100%;
+  margin-right: 19px;
 }

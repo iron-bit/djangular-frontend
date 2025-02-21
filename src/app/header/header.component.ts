@@ -15,70 +15,65 @@ import {NgIf, NgStyle} from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  items: MenuItem[] | undefined;
-  default_items: MenuItem[] | undefined;
-
-  ngOnInit() {
-
-    this.default_items = [{
-        separator: true
-      },
-      {
-        label: 'Account',
-        items: [
-          {
-            label: 'Sign In',
-            icon: 'pi pi-sign-in',
-          },
-          {
-            label: 'Sign Up',
-            icon: 'pi pi-user-plus',
-          }
-        ]
-      }
-    ]
-
-    this.items = [{
-      separator: true
-    },
-      {
-        label: 'Posts',
-        items: [
-          {
-            label: 'New',
-            icon: 'pi pi-plus',
-          },
-          {
-            label: 'Search',
-            icon: 'pi pi-search',
-          }
-        ]
-      },
-      {
-        label: 'Profile',
-        items: [
-          {
-            label: 'Your Profile',
-            icon: 'pi pi-user',
-          },
-          {
-            label: 'Your Posts',
-            icon: 'pi pi-clipboard',
-            badge: '16', // Poner el número de posts
-          },
-          {
-            label: 'Logout',
-            icon: 'pi pi-sign-out',
-          }
-        ]
-      },
-      {
-        separator: true
-      }];
-  }
+export class HeaderComponent {
 
   registered = true;
+
+  default_items = [{
+    separator: true
+  },
+    {
+      label: 'Account',
+      items: [
+        {
+          label: 'Sign In',
+          icon: 'pi pi-sign-in',
+        },
+        {
+          label: 'Sign Up',
+          icon: 'pi pi-user-plus',
+        }
+      ]
+    }
+  ]
+
+  items = [{
+    separator: true
+  },
+    {
+      label: 'Posts',
+      items: [
+        {
+          label: 'New',
+          icon: 'pi pi-plus',
+        },
+        {
+          label: 'Search',
+          icon: 'pi pi-search',
+        }
+      ]
+    },
+    {
+      label: 'Profile',
+      items: [
+        {
+          label: 'Your Profile',
+          icon: 'pi pi-user',
+        },
+        {
+          label: 'Your Posts',
+          icon: 'pi pi-clipboard',
+          badge: '16', // Poner el número de posts
+        },
+        {
+          label: 'Logout',
+          icon: 'pi pi-sign-out',
+        }
+      ]
+    },
+    {
+      separator: true
+    }];
 
   user = {
     'id': '1',
