@@ -6,12 +6,12 @@ import {ButtonModule} from 'primeng/button';
 import {PrimeIcons} from 'primeng/api';
 import {Badge} from 'primeng/badge';
 import {Avatar} from 'primeng/avatar';
-import {NgIf, NgStyle} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgStyle],
+  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgClass],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
