@@ -16,33 +16,79 @@
     </button>
   </div>
   <div class="hidden md:flex flex-row w-60 justify-around items-center text-l text-gray-50">
-    <a href="#" class="rounded-lg text-center pb-1 hover:text-gray-200">Sign in</a>
-    <a href="#"
-       class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors duration-300">
-      <span class="pb-1">Sign up</span>
-      <span class="ml-1">
+    <ng-container *ngIf="!registered">
+      <a href="#" class="rounded-lg text-center pb-1 hover:text-gray-200">Sign in</a>
+      <a href="#"
+         class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors duration-300">
+        <span class="pb-1">Sign up</span>
+        <span class="ml-1">
         <img src="/assets/arrow_right.svg" alt="right-arrow" class="w-7">
       </span>
-    </a>
+      </a>
+    </ng-container>
+    <ng-container *ngIf="registered">
+      <div class="flex flex-row items-center justify-between w-30">
+        <button title="New Post"
+                class="border-1 w-8 h-8 mb-1 border-gray-500 rounded-lg p-1 hover:bg-gray-600 transition-colors duration-200 cursor-pointer">
+          <a href="#" class="pi pi-plus rounded-lg text-blue-200"></a>
+        </button>
+        <p-menu #menu [model]="registered ? items : default_items" [popup]="true"
+                class="custom-menu flex justify-center w-auto md:w-auto text-gray-100">
+          <ng-template #submenuheader let-item>
+            <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
+          </ng-template>
+          <ng-template #item let-item>
+            <a pRipple class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
+              <span
+                class="pb-1"
+                [class]="item.icon"
+                [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
+              </span>
+              <span class="ml-2 mb-1"
+                    [ngClass]="{'text-red-300': item.label === 'Logout'}">
+                    {{ item.label }}
+              </span>
+              <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
+            </a>
+          </ng-template>
+          <ng-template #end *ngIf="registered">
+            <button pRipple
+                    class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg cursor-pointer">
+              <p-avatar image="{{ user.image }}" class="" shape="circle"/>
+              <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
+            </button>
+          </ng-template>
+        </p-menu>
+        <p-button (click)="menu.toggle($event)" title="{{ user.nickname }}"
+                  class="hamburger text-blue-200 h-full rounded-full">
+          <img src="{{ user.image }}" alt="hamburger" class="h-14 w-14 rounded-full">
+        </p-button>
+      </div>
+    </ng-container>
   </div>
   <div class="card flex justify-center md:hidden">
-    <p-menu #menu [model]="items" [popup]="true"
+    <p-menu #menu [model]="registered ? items : default_items" [popup]="true"
             class="custom-menu flex justify-center w-auto md:w-auto text-gray-100">
       <ng-template #submenuheader let-item>
-        <span class="block text-primary font-semibold w-full text-center ">{{ item.label }}</span>
+        <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
       </ng-template>
       <ng-template #item let-item>
-        <a pRipple class="flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
-          <span [class]="item.icon"></span>
-          <span class="ml-2 mb-2">{{ item.label }}</span>
+        <a pRipple class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
+          <span class="pb-1"
+            [class]="item.icon"
+            [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
+          </span>
+          <span class="ml-2 mb-1"
+                [ngClass]="{'text-red-300': item.label === 'Logout'}">
+            {{ item.label }}
+          </span>
           <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
         </a>
       </ng-template>
-      <ng-template #end>
+      <ng-template #end *ngIf="registered">
         <button pRipple
-                class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg transition-colors duration-200 cursor-pointer">
-          <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="pl-2 mr-7"
-                    shape="circle"/>
+                class="line relative overflow-hidden w-full h-full flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg">
+          <p-avatar image="{{ user.image }}" class="" shape="circle"/>
           <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
         </button>
       </ng-template>
