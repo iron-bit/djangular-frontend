@@ -1,43 +1,34 @@
-<div class="xl:inline-flex flex-col border-2 border-gray-500 rounded-sm bg-gray-900 p-4">
-  <h1 class="mb-2 text-[20px] text-blue-200 italic">Your Communities</h1>
+<div class="w-full border border-gray-400 rounded-lg px-2.5 py-2">
+  <div class="border-b border-gray-700 py-1 text-center">
+    <span class="text-gray-100 text-sm font-bold">Communities</span>
+  </div>
 
-  <div
-    class="overflow-hidden transition-all duration-300 ease-in-out"
-    [ngClass]="ver6Comunidades ? 'max-h-[320px]' : 'max-h-[185px]'"
-  >
-    <div class="flex flex-col gap-2">
-      <div *ngFor="let community of communitiesList">
-        <a
-          href="#"
-          class="flex flex-row pt-2 pb-2 justify-evenly transition-all duration-200 ease-in-out hover:bg-gray-800 rounded-md"
-        >
-          <img
-            class="rounded-full w-10 h-10"
-            [src]="community.community_image"
-            alt="Icono"
-          />
-          <div class="flex flex-col items-center text-white">
-            <h3
-              class="text-[12px] font-bold"
-              title="b/{{ community.community_name }}"
-            >
-              b/{{
-                community.community_name.length > 12
-                  ? (community.community_name | slice: 0 : 12) + '...'
-                  : community.community_name
-              }}
-            </h3>
-            <p class="text-[10px]">{{ community.community_members }} members</p>
-          </div>
-        </a>
+  <div [@expandCollapse]="showAllCommunities ? 'expanded' : 'collapsed'">
+    <div class="py-2 flex flex-col gap-3">
+      <div *ngFor="let item of visibleCommunities" class="flex flex-row gap-2 hover:cursor-pointer hover:bg-gray-800 transition-all px-0.5 py-1 rounded-lg">
+        <img [src]="item.image" alt="" class="size-10 rounded-full transition-transform">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="text-gray-100 text-sm font-bold truncate hover:text-blue-400 transition-colors">
+            {{ item.name }}
+          </span>
+          <span class="text-gray-500 text-xs font-light">
+            {{ item.members }} members
+          </span>
+        </div>
       </div>
     </div>
   </div>
 
-  <p
-    (click)="action()"
-    class="text-white hover:underline text-xs mt-2 cursor-pointer"
-  >
-    {{ ver6Comunidades ? 'Ver menos...' : 'Ver más...' }}
-  </p>
+  <div class="text-center pt-2 border-t border-gray-700 mt-2"
+       (click)="toggleShowCommunities()"
+       *ngIf="communitiesList.length > 4">
+    <button class="text-blue-400 hover:text-blue-300 text-xs font-medium transition-colors flex items-center justify-center gap-1 w-full hover:cursor-pointer">
+      {{ showAllCommunities ? 'Show less' : 'Show more' }}
+      <svg class="w-4 h-4 transform transition-transform"
+           [class.rotate-180]="showAllCommunities"
+           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+  </div>
 </div>

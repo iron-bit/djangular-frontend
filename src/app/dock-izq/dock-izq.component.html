@@ -1,20 +1,6 @@
-<div class="border-2 border-gray-500 inline-block rounded-sm bg-gray-900">
-  <ul
-    class="grid grid-col-1 sm:grid-col-1 overflow-x-auto sm:overflow-x-visible space-x-5 sm:space-x-0 sm:space-y-2"
-  >
-    <li
-      *ngFor="let item of dock_izq.tags"
-      class="flex-shrink-0"
-      (click)="seleccionarTag(item.tag)"
-    >
-      <a href="#" class="block p-2">
-        <img
-          [src]="item.icon"
-          [alt]="item.tag"
-          class="size-13 filter brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg hover:scale-110 duration-300"
-          [title]="item.tag"
-        />
-      </a>
-    </li>    
-  </ul>
+<div class="w-full flex flex-row md:flex-col justify-between px-4 py-2 border border-gray-400 rounded-lg bg-gray-900 h-fit md:gap-6">
+  <span *ngFor="let tag of tags">
+    <img [src]="tag.icon" [alt]="tag.tag" [title]="tag.tag | titlecase"
+    class="size-9 md:size-11 brightness-0 invert transition-all hover:filter-none hover:drop-shadow-lg duration-300 hover:cursor-pointer">
+  </span>
 </div>
