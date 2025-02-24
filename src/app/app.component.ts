@@ -5,10 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { DockIzqComponent } from './dock-izq/dock-izq.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { FooterComponent} from './footer/footer.component';
+import { CreatePostPopupComponent } from './create-post-popup/create-post-popup.component';
+import { AccountDataComponent } from './account-data/account-data.component';
+import { RegisterComponent } from "./register/register.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PostComponent,  HeaderComponent, FooterComponent, DockIzqComponent, CommunitiesComponent],
+  imports: [RouterOutlet, PostComponent, HeaderComponent, FooterComponent, DockIzqComponent, CommunitiesComponent, CreatePostPopupComponent, AccountDataComponent, RegisterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
