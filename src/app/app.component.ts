@@ -8,10 +8,11 @@ import { FooterComponent} from './footer/footer.component';
 import { CreatePostPopupComponent } from './create-post-popup/create-post-popup.component';
 import { AccountDataComponent } from './account-data/account-data.component';
 import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PostComponent, HeaderComponent, FooterComponent, DockIzqComponent, CommunitiesComponent, CreatePostPopupComponent, AccountDataComponent, RegisterComponent],
+  imports: [RouterOutlet, PostComponent, HeaderComponent, FooterComponent, DockIzqComponent, CommunitiesComponent, CreatePostPopupComponent, AccountDataComponent, RegisterComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

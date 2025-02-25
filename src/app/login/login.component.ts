@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,46 +11,41 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  // Credenciales válidas para la prueba
-  validCredentials = {
-    nickname: 'paco',
-    password: '1234'
-  };
-
-  
   // Objeto para almacenar los datos del formulario
   loginData = {
-    nickname: '',   
+    username: '',
     password: '',
     rememberMe: false
   };
 
-  // Banderas de validación
+  // Banderas para manejo de estados y errores
   submitted: boolean = false;
-  nicknameError: boolean = false;
-  passwordError: boolean = false;
   loginError: boolean = false;
 
-  // Al iniciar el componente, si existen credenciales guardadas se autocompleta el formulario
- 
+  constructor(private apiService: ApiService) {}
 
   // Método que se ejecuta al enviar el formulario
   onSubmit(): void {
     this.submitted = true;
-    this.nicknameError = this.loginData.nickname !== this.validCredentials.nickname;
-    this.passwordError = this.loginData.password !== this.validCredentials.password;
-
-    if (
-      this.loginData.nickname === this.validCredentials.nickname &&
-      this.loginData.password === this.validCredentials.password
-    ) {
-      console.log('Login correcto');
-      console.log('Datos del formulario:', this.loginData);
+    this.loginError = false;
   
-      // Aquí podrías llamar a un servicio de autenticación o redirigir al usuario
-    } else {
-      console.error('Credenciales incorrectas');
-      this.loginError = true;
-    }
+    // Llamamos al servicio para autenticar al usuario
+    this.apiService.login(this.loginData).subscribe({
+      next: (response: any) => {
+        console.log('Login correcto:', response);
+        
+        // Almacenar los tokens en el localStorage
+        localStorage.setItem('access_token', response.access);
+        localStorage.setItem('refresh_token', response.refresh);
+        
+        // Redireccionar al dashboard u otra ruta según convenga
+        //this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        console.error('Error en el login:', error);
+        this.loginError = true;
+      }
+    });
   }
+  
 }

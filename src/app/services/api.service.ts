@@ -20,10 +20,22 @@ export class ApiService {
       "password": registerData.password
     }
 
-  
     return this.http.post<any>(url, enviarDatos);
   }
   
+
+  login(loginData: any): Observable<any> {
+    const url: string = this.apiUrl + 'token/';
+
+    const loginMandarDatos = {
+      "username": loginData.username,
+      "password": loginData.password
+    }
+
+    return this.http.post<any>(url, loginMandarDatos);
+  }
+
+
   
 
 
