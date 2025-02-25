@@ -6,7 +6,7 @@ import { PostsViewComponent } from './posts-view/posts-view.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PostsViewComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
