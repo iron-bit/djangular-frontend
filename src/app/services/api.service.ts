@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,35 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/'
 
-  constructor(private http : HttpClient) { }
-
-  
-  register(registerData: any): Observable<any> {
-    const url: string = this.apiUrl + 'register/';
-
-    const enviarDatos = {
-      "username": registerData.nickname,
-      "email": registerData.email,
-      "password": registerData.password
-    }
-
-    return this.http.post<any>(url, enviarDatos);
-  }
-  
-
-  login(loginData: any): Observable<any> {
-    const url: string = this.apiUrl + 'token/';
-
-    const loginMandarDatos = {
-      "username": loginData.username,
-      "password": loginData.password
-    }
-
-    return this.http.post<any>(url, loginMandarDatos);
+  constructor(private http: HttpClient) {
   }
 
-
-  
-
-
+  getUserInfo() {
+    const endpointUrl: string = this.apiUrl + 'profile/';
+    return this.http.get(endpointUrl);
+  }
 }

@@ -1,23 +1,57 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuModule} from 'primeng/menu';
-import {Menu} from 'primeng/menu';
+import {Menu, MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {PrimeIcons} from 'primeng/api';
 import {Badge} from 'primeng/badge';
 import {Avatar} from 'primeng/avatar';
 import {NgClass, NgIf} from '@angular/common';
+import {AuthService} from '../services/auth.service';
+import {ApiService} from '../services/api.service';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgClass],
+  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgClass, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  registered = true;
+  registered = false;
+  user = {
+    'id': '1',
+    'name': 'John Doe',
+    'username': 'johndoe123',
+    'email': 'john@mail.com',
+    'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
+    'age': 25,
+    'creation-time': '19-02-2025',
+  }
+
+  constructor(private authService: AuthService, private apiService: ApiService) {
+  }
+
+  ngOnInit(): void {
+    this.apiService.getUserInfo().subscribe({
+      next: (response: any) => {
+        this.user = response;
+        this.user.image = 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg';
+        this.registered = this.authService.isAuthenticated();
+      },
+      error: (err: any) => {
+        if (err.status === 401) {
+          this.registered = false;
+        }
+      }
+    });
+  }
+
+  logout() {
+    this.authService.logout()
+    this.registered = false;
+  }
 
   default_items = [{
     separator: true
@@ -74,15 +108,4 @@ export class HeaderComponent {
     {
       separator: true
     }];
-
-  user = {
-    'id': '1',
-    'name': 'John Doe',
-    'nickname': 'johndoe123',
-    'email': 'john@mail.com',
-    'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
-    'age': 25,
-    'creation-time': '19-02-2025',
-  }
-
 }

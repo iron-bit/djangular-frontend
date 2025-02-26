@@ -43,7 +43,7 @@ export class PostComponent {
 
   public getLabelColor(label: string) {
     const color = this.tagsCategory[label.toLowerCase()]
-    console.log(`${label} : ${color}`)
+    // console.log(`${label} : ${color}`)
     return `${color}-label`;
   }
 

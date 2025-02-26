@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,30 +23,26 @@ export class LoginComponent {
   submitted: boolean = false;
   loginError: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: AuthService, private router: Router) {
+  }
 
-  // Método que se ejecuta al enviar el formulario
+  // Méthodo que se ejecuta al enviar el formulario
   onSubmit(): void {
     this.submitted = true;
     this.loginError = false;
-  
+
+
     // Llamamos al servicio para autenticar al usuario
-    this.apiService.login(this.loginData).subscribe({
-      next: (response: any) => {
-        console.log('Login correcto:', response);
-        
-        // Almacenar los tokens en el localStorage
-        localStorage.setItem('access_token', response.access);
-        localStorage.setItem('refresh_token', response.refresh);
-        
-        // Redireccionar al dashboard u otra ruta según convenga
-        //this.router.navigate(['/dashboard']);
+    this.apiService.login(this.loginData.username, this.loginData.password).subscribe({
+      next: () => {
+        alert('Login successful!');
+        this.router.navigate(['/']);
       },
-      error: (error) => {
-        console.error('Error en el login:', error);
+      error: (err) => {
         this.loginError = true;
-      }
+        console.error('Login error:', err);
+        alert('Login error: ' + (err.message || 'Unknown error'));
+      },
     });
   }
-  
 }
