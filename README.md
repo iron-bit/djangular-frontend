@@ -13,7 +13,7 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
 
 ---
 
-## Índice
+## Table of Contents
 
 - [Introducción](#introducción)
 - [🛠 Tech Stack](#-tech-stack)
@@ -25,9 +25,9 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
 
 ---
 
-## Introducción
+## Introduction
 
-Blueddit es una plataforma diseñada para que los usuarios se conecten, compartan y participen en comunidades sobre temas de su interés. Inspirada en Reddit, permite crear y unirse a comunidades, publicar contenido, etiquetar y filtrar publicaciones, facilitando una experiencia interactiva y colaborativa.
+Blueddit is a platform designed for users to connect, share and participate in communities on topics of interest. Inspired by Reddit, it allows users to create and join communities, post content, tag and filter posts, facilitating an interactive and collaborative experience.
 
 ---
 
