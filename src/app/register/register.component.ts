@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +11,6 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-  
-
   registerData = {
     nombre: '',
     nickname: '',
@@ -25,7 +22,8 @@ export class RegisterComponent {
   };
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: AuthService) {
+  }
 
 
   onSubmit(): void {
@@ -45,9 +43,6 @@ export class RegisterComponent {
         console.error('Error en la solicitud', error);
       }
     );
-
-
-
   }
 
 }

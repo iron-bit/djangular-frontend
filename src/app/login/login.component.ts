@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,30 +22,19 @@ export class LoginComponent {
   submitted: boolean = false;
   loginError: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: AuthService) {
+  }
 
-  // Método que se ejecuta al enviar el formulario
+  // Méthodo que se ejecuta al enviar el formulario
   onSubmit(): void {
     this.submitted = true;
     this.loginError = false;
-  
+
+
     // Llamamos al servicio para autenticar al usuario
-    this.apiService.login(this.loginData).subscribe({
-      next: (response: any) => {
-        console.log('Login correcto:', response);
-        
-        // Almacenar los tokens en el localStorage
-        localStorage.setItem('access_token', response.access);
-        localStorage.setItem('refresh_token', response.refresh);
-        
-        // Redireccionar al dashboard u otra ruta según convenga
-        //this.router.navigate(['/dashboard']);
-      },
-      error: (error) => {
-        console.error('Error en el login:', error);
-        this.loginError = true;
-      }
+    this.apiService.login(this.loginData.username, this.loginData.password).subscribe({
+      next: () => alert('Login hecho correctamente!'),
+      error: () => alert('Error en el login:'),
     });
   }
-  
 }
