@@ -32,7 +32,6 @@ export class PostsViewComponent implements OnInit {
     }
   }
 
-
   posts = [
     this.post
   ]
@@ -45,7 +44,7 @@ export class PostsViewComponent implements OnInit {
       },
       error: (err: any) => {
         if (err.status === 400) {
-          console.error('Error de Javi y Álex:', err);
+          console.error('Err: ', err);
         }
       }
     });
