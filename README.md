@@ -15,7 +15,7 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
 
 ## Table of Contents
 
-- [Introducción](#introducción)
+- [Introduction](#introduction)
 - [🛠 Tech Stack](#-tech-stack)
 - [🚀 Deployment](#-deployment)
 - [📚 API Reference](#-api-reference)
