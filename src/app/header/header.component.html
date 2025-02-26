@@ -1,8 +1,10 @@
 <header class="flex flex-row justify-around items-center py-2 bg-gray-900">
+  <!--Logo-->
   <a href="#">
     <img src="/assets/logo_header.png" alt="Logo" class="hidden md:block h-18 w-39"/>
     <img src="/assets/logo_header_mini.png" alt="Logo" class="block md:hidden w-10"/>
   </a>
+  <!--Buscador-->
   <div
     class="flex flex-row items-center justify-around border-1 border-gray-500 rounded-lg p-0.5 w-55 lg:min-w-150 md:w-90 md:h-9 md:p-1 transition-colors duration-300">
     <input type="text" placeholder="b/group/user"
@@ -15,10 +17,14 @@
       </span>
     </button>
   </div>
+
+  <!--Menu-->
   <div class="hidden md:flex flex-row w-60 justify-around items-center text-l text-gray-50">
     <ng-container *ngIf="!registered">
-      <a href="#" class="rounded-lg text-center pb-1 hover:text-gray-200">Sign in</a>
-      <a href="#"
+      <a routerLink="/login" class="rounded-lg text-center pb-1 hover:text-gray-200">
+        Sign in
+      </a>
+      <a routerLink="/register"
          class="flex flex-row justify-around items-center p-1 px-3 border-2 rounded-3xl border-gray-500 hover:border-t-2 hover:border-blue-300 hover:text-gray-200 transition-colors duration-300">
         <span class="pb-1">Sign up</span>
         <span class="ml-1">
@@ -75,8 +81,8 @@
       <ng-template #item let-item>
         <a pRipple class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
           <span class="pb-1"
-            [class]="item.icon"
-            [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
+                [class]="item.icon"
+                [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
           </span>
           <span class="ml-2 mb-1"
                 [ngClass]="{'text-red-300': item.label === 'Logout'}">

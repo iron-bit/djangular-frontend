@@ -1,23 +1,32 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuModule} from 'primeng/menu';
-import {Menu} from 'primeng/menu';
+import {Menu, MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {PrimeIcons} from 'primeng/api';
 import {Badge} from 'primeng/badge';
 import {Avatar} from 'primeng/avatar';
 import {NgClass, NgIf} from '@angular/common';
+import {AuthService} from '../services/auth.service';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgClass],
+  imports: [ButtonModule, Menu, Badge, Avatar, NgIf, NgClass, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   registered = true;
+
+  constructor(private authService: AuthService) {
+  }
+
+  ngOnInit(): void {
+    this.registered = this.authService.isAuthenticated();
+  }
+
 
   default_items = [{
     separator: true
@@ -84,5 +93,4 @@ export class HeaderComponent {
     'age': 25,
     'creation-time': '19-02-2025',
   }
-
 }
