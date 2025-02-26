@@ -19,7 +19,7 @@ import {Router, RouterLink} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  registered = true;
+  registered = false;
   user = {
     'id': '1',
     'name': 'John Doe',
@@ -34,13 +34,18 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.registered = this.authService.isAuthenticated();
-    if (this.registered) {
-      this.apiService.getUserInfo().subscribe((response: any) => {
+    this.apiService.getUserInfo().subscribe({
+      next: (response: any) => {
         this.user = response;
         this.user.image = 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg';
-      });
-    }
+        this.registered = this.authService.isAuthenticated();
+      },
+      error: (err: any) => {
+        if (err.status === 401) {
+          this.registered = false;
+        }
+      }
+    });
   }
 
   logout() {

@@ -52,6 +52,9 @@ export class AuthService {
 
 
   getAccessToken(): string | null {
+    if (!this.isAuthenticated()) {
+      return null;
+    }
     return localStorage.getItem('access_token');
   }
 
@@ -80,17 +83,5 @@ export class AuthService {
         return of(null);
       })
     );
-  }
-
-
-  isTokenExpired(): boolean {
-    const token = this.getAccessToken();
-    if (!token) return true;
-
-    const tokenParts = JSON.parse(atob(token.split('.')[1]));
-    const exp = tokenParts.exp;
-    const now = Math.floor(Date.now() / 1000);
-
-    return exp < now;
   }
 }
