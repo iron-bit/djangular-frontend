@@ -20,7 +20,7 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
 - [🚀 Deployment](#-deployment)
 - [📚 API Reference](#-api-reference)
 - [💥 Screenshots](#-screenshots)
-- [✍️ Authors](#-authors)
+- [✍️ Authors](#authors)
 - [License](#license)
 
 ---
@@ -167,7 +167,7 @@ Takes two numbers and returns the sum.
 
 ---
 
-## ✍️ Authors
+## ✍️ Authors {#authors}
 
 ### [IronBit](https://github.com/iron-bit)
 
