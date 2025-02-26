@@ -6,9 +6,17 @@ import { Observable, switchMap, catchError, of } from 'rxjs';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const accessToken = authService.getAccessToken();
-  let authReq = req;
 
-  // ✅ Attach Access Token if available
+  // Para los endpoints que no requieren autenticación
+  const publicUrls = [
+    '/api/public-endpoint/',
+  ];
+
+  if (publicUrls.some(url => req.url.includes(url))) {
+    return next(req);
+  }
+
+  let authReq = req;
   if (accessToken) {
     authReq = req.clone({
       setHeaders: { Authorization: `Bearer ${accessToken}` }
@@ -17,7 +25,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError(error => {
-      if (error.status === 401) { // 🔴 Unauthorized: Token might be expired
+      // Si el error es 401, intentamos refrescar el token
+      if (error.status === 401) {
         return authService.refreshToken().pipe(
           switchMap(newToken => {
             if (!newToken) {
@@ -25,7 +34,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
               return of(error);
             }
 
-            // ✅ Retry the request with the new token
+            // probamos de nuevo
             authReq = req.clone({
               setHeaders: { Authorization: `Bearer ${newToken.access}` }
             });

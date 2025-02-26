@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {catchError, Observable, of} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from 'rxjs/operators';
@@ -43,6 +43,12 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
   }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('access_token');
+    return token ? !this.jwtHelper.isTokenExpired(token) : false;
+  }
+
 
   getAccessToken(): string | null {
     return localStorage.getItem('access_token');
