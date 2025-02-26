@@ -60,13 +60,6 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
 </div>
 
 
-
-
-## 📃 Documentation
-
-[Documentation](https://linktodocumentation)
-
-
 ## 🚀 Deployment
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
