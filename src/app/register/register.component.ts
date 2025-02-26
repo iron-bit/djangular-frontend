@@ -13,36 +13,67 @@ import {AuthService} from '../services/auth.service';
 export class RegisterComponent {
   registerData = {
     nombre: '',
-    nickname: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    birthdate: '',
+    birthdate: '', // Valor ingresado por el usuario (string en formato de fecha)
     terms: false
   };
 
-
   constructor(private apiService: AuthService) {
-  }
 
+    function convertirFecha(fecha: string): string | null {
+      const partes = fecha.split('/');
+      if (partes.length !== 3) return null; // Formato inválido
+      const [dia, mes, año] = partes;
+      // Retorna la fecha en formato ISO
+      return `${año}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+    }
+
+  }
 
   onSubmit(): void {
     // Verifica que la contraseña y su confirmación coincidan
     if (this.registerData.password !== this.registerData.confirmPassword) {
+      console.error('Las contraseñas no coinciden');
       return;
     }
-    // Aquí puedes agregar la lógica para enviar el formulario
-    console.log('Registro enviado', this.registerData);
-    this.apiService.register(this.registerData).subscribe(
+
+    // Calcula la edad a partir de la fecha de nacimiento
+    const birthDate = new Date(this.registerData.birthdate);
+    const today = new Date();
+
+    console.log(birthDate);
+    console.log(today);
+    
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    
+    // Crea un objeto con los datos a enviar, usando la edad calculada
+    const dataToSend = {
+      nombre: this.registerData.nombre,
+      username: this.registerData.username,
+      email: this.registerData.email,
+      password: this.registerData.password,
+      age: age, // Se envía la edad en lugar de la fecha de nacimiento
+      terms: this.registerData.terms
+    };
+
+    console.log('Registro enviado', dataToSend);
+
+    this.apiService.register(dataToSend).subscribe(
       (response) => {
-        // Guarda la respuesta en una variable de tu componente
-        const respuestaServidor = response;
-        console.log('Respuesta del servidor:', respuestaServidor);
+        console.log('Respuesta del servidor:', response);
       },
       (error) => {
         console.error('Error en la solicitud', error);
       }
     );
   }
-
+  
 }
