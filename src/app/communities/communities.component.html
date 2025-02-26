@@ -9,7 +9,7 @@
         <img [src]="item.image" alt="" class="size-10 rounded-full transition-transform">
         <div class="flex flex-col min-w-0 flex-1">
           <span class="text-gray-100 text-sm font-bold truncate hover:text-blue-400 transition-colors">
-            {{ item.name.length > 8 ? item.name.slice(0, 8) + '...' : item.name }}
+            {{ item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name }}
           </span>
           <span class="text-gray-500 text-xs font-light">
             {{ item.members }} members
