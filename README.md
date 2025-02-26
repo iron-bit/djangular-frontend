@@ -135,29 +135,52 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## 📚 API Reference
 
-#### Get all items
+This section describes the main endpoints for authentication and API usage.  
+Remember that for making protected requests, you must include the token in the Authorization header using the following format:
 
-```http
-  GET /api/items
+Authorization: Bearer <your-access-token>
+
+### User Registration
+- Endpoint:
+```bash
+{{api_dir}}register/
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
+- Request Body:
+```bash
+{
+    "username": "newuser223",
+    "email": "newuser23@example.com",
+    "password": "newpassword1233",
+    "age": 33
+}
 ```
+Description:
+Sends the user data to register a new user. If the request is successful, you will receive a confirmation message indicating that the registration was completed successfully.
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+### Login and Token Retrieval
+Endpoint:
+```bash
+{{api_dir}}token/
+```
+- Request Body:
+```bash
+{
+    "username": "newuser223",
+    "password": "newpassword1233"
+}
+```
+Description:
+Uses the registered user's credentials to obtain authentication tokens. The response will include the token that must be used in subsequent requests.
 
-#### add(num1, num2)
 
-Takes two numbers and returns the sum.
+### Authorized Requests
+Once you have obtained the token, include the following header in your requests to access protected endpoints
+
+- Example Header:
+```bash
+Authorization: Bearer your-access-token
+```
+This header enables you to perform POST requests (and others) on endpoints that require authentication.
 
 ---
 
