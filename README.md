@@ -166,10 +166,10 @@ Takes two numbers and returns the sum.
   <a href="https://www.linkedin.com/in/tymur-kulivar-shymanskyi/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
   <img width="20" />
   <a href="https://github.com/VulpeenGX" style="color: black; font-weight: bold; text-decoration: none;">@VulpeenGX</a> |
-  <a href="https://www.linkedin.com/in/jaime-gutierrez-pereira-330430348/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/alejandro-gutierrez-31671b330/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
   <img width="20" />
   <a href="https://github.com/Rutherfordio78" style="color: black; font-weight: bold; text-decoration: none;">@Rutherfordio78</a> |
-  <a href="https://www.linkedin.com/in/alejandro-gutierrez-31671b330/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/jaime-gutierrez-pereira-330430348/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
   <img width="20" />
   <a href="https://github.com/ciovanes" style="color: black; font-weight: bold; text-decoration: none;">@ciovanes</a> |
   <a href="https://www.linkedin.com/in/ciovanes/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
@@ -177,9 +177,6 @@ Takes two numbers and returns the sum.
   <a href="https://github.com/RedondoDev" style="color: black; font-weight: bold; text-decoration: none;">@RedondoDev</a> |
   <a href="https://www.linkedin.com/in/javier-redondo-fern%C3%A1ndez-680957285/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
 </div>
-
-
-
 
 ## License
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
