@@ -185,6 +185,7 @@ This header enables you to perform POST requests (and others) on endpoints that 
 ---
 
 ## 💥 Screenshots
+[Sketchs](https://www.figma.com/design/pCDxEVIjtu6eDOV7LWddUT/Djangular?node-id=662-2&t=bzEkyY1lCI01xzqG-1)
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
