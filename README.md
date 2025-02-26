@@ -1,5 +1,6 @@
 
-![Logo](logo.png)
+![Logo](https://github.com/iron-bit/djangular-frontend/blob/main/public/assets/logo_footer.png)
+
 
 
 # Blueddit: The Community-Driven Content Hub
