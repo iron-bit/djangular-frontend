@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 interface User {
@@ -12,7 +14,7 @@ interface User {
 
 @Component({
   selector: 'app-account-data',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './account-data.component.html',
   styleUrl: './account-data.component.css'
 })
