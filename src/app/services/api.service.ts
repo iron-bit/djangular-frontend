@@ -14,4 +14,10 @@ export class ApiService {
     const endpointUrl: string = this.apiUrl + 'profile/';
     return this.http.get(endpointUrl);
   }
+
+  getPostsInfo() {
+    const endpointUrl: string = this.apiUrl + 'posts/';
+    return this.http.get(endpointUrl);
+  }
+
 }
