@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
   submitted: boolean = false;
   loginError: boolean = false;
 
-  constructor(private apiService: AuthService) {
+  constructor(private apiService: AuthService, private router: Router) {
   }
 
   // Méthodo que se ejecuta al enviar el formulario
@@ -33,8 +34,15 @@ export class LoginComponent {
 
     // Llamamos al servicio para autenticar al usuario
     this.apiService.login(this.loginData.username, this.loginData.password).subscribe({
-      next: () => alert('Login hecho correctamente!'),
-      error: () => alert('Error en el login:'),
+      next: () => {
+        alert('Login successful!');
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.loginError = true;
+        console.error('Login error:', err);
+        alert('Login error: ' + (err.message || 'Unknown error'));
+      },
     });
   }
 }

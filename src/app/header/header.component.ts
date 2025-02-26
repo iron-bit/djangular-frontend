@@ -7,6 +7,7 @@ import {Badge} from 'primeng/badge';
 import {Avatar} from 'primeng/avatar';
 import {NgClass, NgIf} from '@angular/common';
 import {AuthService} from '../services/auth.service';
+import {ApiService} from '../services/api.service';
 import {Router, RouterLink} from '@angular/router';
 
 @Component({
@@ -19,14 +20,33 @@ import {Router, RouterLink} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   registered = true;
+  user = {
+    'id': '1',
+    'name': 'John Doe',
+    'username': 'johndoe123',
+    'email': 'john@mail.com',
+    'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
+    'age': 25,
+    'creation-time': '19-02-2025',
+  }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private apiService: ApiService) {
   }
 
   ngOnInit(): void {
     this.registered = this.authService.isAuthenticated();
+    if (this.registered) {
+      this.apiService.getUserInfo().subscribe((response: any) => {
+        this.user = response;
+        this.user.image = 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg';
+      });
+    }
   }
 
+  logout() {
+    this.authService.logout()
+    this.registered = false;
+  }
 
   default_items = [{
     separator: true
@@ -83,14 +103,4 @@ export class HeaderComponent implements OnInit {
     {
       separator: true
     }];
-
-  user = {
-    'id': '1',
-    'name': 'John Doe',
-    'nickname': 'johndoe123',
-    'email': 'john@mail.com',
-    'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
-    'age': 25,
-    'creation-time': '19-02-2025',
-  }
 }

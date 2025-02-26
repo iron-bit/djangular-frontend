@@ -61,11 +61,11 @@
             <button pRipple
                     class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg cursor-pointer">
               <p-avatar image="{{ user.image }}" class="" shape="circle"/>
-              <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
+              <span class="font-bold whitespace-nowrap pr-2"> {{ user.username }} </span>
             </button>
           </ng-template>
         </p-menu>
-        <p-button (click)="menu.toggle($event)" title="{{ user.nickname }}"
+        <p-button (click)="menu.toggle($event)" title="{{ user.username }}"
                   class="hamburger text-blue-200 h-full rounded-full">
           <img src="{{ user.image }}" alt="hamburger" class="h-14 w-14 rounded-full">
         </p-button>
@@ -95,7 +95,7 @@
         <button pRipple
                 class="line relative overflow-hidden w-full h-full flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg">
           <p-avatar image="{{ user.image }}" class="" shape="circle"/>
-          <span class="font-bold whitespace-nowrap pr-2"> {{ user.nickname }} </span>
+          <span class="font-bold whitespace-nowrap pr-2"> {{ user.username }} </span>
         </button>
       </ng-template>
     </p-menu>

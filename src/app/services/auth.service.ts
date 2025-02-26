@@ -3,6 +3,7 @@ import {BehaviorSubject, catchError, Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api/'
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
 
