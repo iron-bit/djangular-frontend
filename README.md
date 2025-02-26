@@ -1,28 +1,45 @@
-
 ![Logo](https://github.com/iron-bit/djangular-frontend/blob/main/public/assets/logo_footer.png)
-
-
 
 # Blueddit: The Community-Driven Content Hub
 
 Dive into Blueddit, a Django and Angular-powered platform designed for users to connect, share, and engage with content tailored to their interests. Similar to Reddit, Blueddit offers:
 
-- Communities: Create or join communities to discuss topics with like-minded individuals.
-
-- Posts: Share your thoughts, ideas, or media either within communities or as standalone posts.
-
-- Tags: Enhance discoverability by tagging your posts.
-
-- Filtering: Find what interests you the most by filtering posts based on tags.
+- **Communities:** Create or join communities to discuss topics with like-minded individuals.
+- **Posts:** Share your thoughts, ideas, or media either within communities or as standalone posts.
+- **Tags:** Enhance discoverability by tagging your posts.
+- **Filtering:** Find what interests you the most by filtering posts based on tags.
 
 Blueddit empowers users to build vibrant communities, explore diverse topics, and stay connected with the content they care about.
 
+---
+
+## Índice
+
+- [Introducción](#introducción)
+- [🛠 Tech Stack](#-tech-stack)
+- [🚀 Deployment](#-deployment)
+  - [Code Scaffolding](#code-scaffolding)
+  - [Building](#building)
+  - [Running Unit Tests](#running-unit-tests)
+  - [Running End-to-End Tests](#running-end-to-end-tests)
+  - [Additional Resources](#additional-resources)
+- [📚 API Reference](#-api-reference)
+- [💥 Screenshots](#-screenshots)
+- [✍️ Authors](#-authors)
+- [License](#license)
+
+---
+
+## Introducción
+
+Blueddit es una plataforma diseñada para que los usuarios se conecten, compartan y participen en comunidades sobre temas de su interés. Inspirada en Reddit, permite crear y unirse a comunidades, publicar contenido, etiquetar y filtrar publicaciones, facilitando una experiencia interactiva y colaborativa.
+
+---
+
 ## 🛠 Tech Stack
 
-**Client:** Angular CLI, HTML, CSS, TailwindCSS, TypeScript, JavaScript
-
-**Server:** Node, Django, Python
-
+**Client:** Angular CLI, HTML, CSS, TailwindCSS, TypeScript, JavaScript  
+**Server:** Node, Django, Python  
 **Tools:** Postman, SQLite, Figma, Git, GitHub, VSCode, PyCharm
 
 <div align="left">
@@ -59,6 +76,7 @@ Blueddit empowers users to build vibrant communities, explore diverse topics, an
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" height="30" alt="pycharm logo"  />
 </div>
 
+---
 
 ## 🚀 Deployment
 
@@ -118,6 +136,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+---
 
 ## 📚 API Reference
 
@@ -145,11 +164,13 @@ For more information on using the Angular CLI, including detailed command refere
 
 Takes two numbers and returns the sum.
 
+---
 
 ## 💥 Screenshots
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
+---
 
 ## ✍️ Authors
 
@@ -171,6 +192,8 @@ Takes two numbers and returns the sum.
   <a href="https://github.com/RedondoDev" style="color: black; font-weight: bold; text-decoration: none;">@RedondoDev</a> |
   <a href="https://www.linkedin.com/in/javier-redondo-fern%C3%A1ndez-680957285/" style="color: #0A66C2; font-weight: bold; text-decoration: none;">LinkedIn</a>
 </div>
+
+---
 
 ## License
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
