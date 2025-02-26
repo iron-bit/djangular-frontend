@@ -167,7 +167,7 @@ Takes two numbers and returns the sum.
 
 ---
 
-## ✍️ Authors {#authors}
+## ✍️ Authors
 
 ### [IronBit](https://github.com/iron-bit)
 
