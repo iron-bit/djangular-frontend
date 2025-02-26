@@ -1,4 +1,4 @@
-<div class="w-full border border-gray-400 rounded-lg px-2.5 py-2">
+<div class="w-full border bg-gray-900 border-gray-400 rounded-lg px-2.5 py-2">
   <div class="border-b border-gray-700 py-1 text-center">
     <span class="text-gray-100 text-sm font-bold">Communities</span>
   </div>
@@ -9,7 +9,7 @@
         <img [src]="item.image" alt="" class="size-10 rounded-full transition-transform">
         <div class="flex flex-col min-w-0 flex-1">
           <span class="text-gray-100 text-sm font-bold truncate hover:text-blue-400 transition-colors">
-            {{ item.name }}
+            {{ item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name }}
           </span>
           <span class="text-gray-500 text-xs font-light">
             {{ item.members }} members
