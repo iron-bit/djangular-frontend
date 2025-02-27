@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +24,7 @@ export class ApiService {
   // hacer peticion del front con el back para el aura
   updateAura(postId: number, action: string): Observable<any> {
     const url = `${this.apiUrl}aura/${postId}/`;
-
-    if (action === 'sumar') {
-      return this.http.post<any>(url, {});
-    } else if (action === 'restar') {
-      return this.http.delete<any>(url);
-    }
-
-    throw new Error('Error en updateAura');
+    return this.http.put<any>(url, {action});
   }
 
 }

@@ -10,9 +10,9 @@
         class="w-8 rounded-full"
       />
       <div class="flex flex-row gap-2 items-center">
-        <span class="font-bold text-sm sm:text-base my-auto"
-          >b/{{ post.community.name }}</span
-        >
+        <span class="font-bold text-sm sm:text-base my-auto">
+          b/{{ post.community.name }}
+        </span>
         <span
           *ngIf="getTimeDifference(); else dateTemplate"
           class="text-xs text-gray-300 my-auto"
@@ -38,6 +38,9 @@
   </div>
   <div class="max-w-full px-1 text-sm sm:text-base">
     <h1>{{ post.title }}</h1>
+  </div>
+  <div class="max-w-full px-1 text-sm sm:text-base">
+    <p>{{ post.content }}</p>
   </div>
   <div
     (click)="disableNSFW()"
