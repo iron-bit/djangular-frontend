@@ -12,7 +12,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: AccountDataComponent},
-  {path: '**', component: NotFoundComponent},
   { path: 'create-post', component: CreatePostPopupComponent},
   { path: '**', component:NotFoundComponent }
 ];

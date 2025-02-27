@@ -75,4 +75,8 @@ export class CreatePostPopupComponent implements OnInit {
     })
   }
 
+  public createPost() {
+
+  }
+
 }
