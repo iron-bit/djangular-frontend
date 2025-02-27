@@ -17,7 +17,7 @@ export class PostComponent implements OnInit {
   private tagsCategory: { [key: string]: string } = {
     social: 'blue',
     health: 'purple',
-    technology: 'rose',
+    tech: 'rose',
     science: 'emerald',
     art: 'orange',
   };
