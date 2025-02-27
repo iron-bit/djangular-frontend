@@ -63,6 +63,8 @@ export class PostComponent implements OnInit {
     return null;
   }
 
+
+
   //Actualiza el aura con la api para que luego el otro metodo updateAura lo carge en el front
   updateAura(action: string): void {
     if (action === 'sumar') {
