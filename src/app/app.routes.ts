@@ -4,6 +4,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AccountDataComponent} from './account-data/account-data.component';
+import { CreatePostPopupComponent } from './create-post-popup/create-post-popup.component';
 
 
 export const routes: Routes = [
@@ -11,5 +12,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: AccountDataComponent},
-  {path: '**', component: NotFoundComponent}
+  { path: 'create-post', component: CreatePostPopupComponent},
+  { path: '**', component:NotFoundComponent }
 ];
