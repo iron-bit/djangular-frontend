@@ -27,4 +27,14 @@ export class ApiService {
     return this.http.put<any>(url, {action});
   }
 
+  getCommunities() {
+    const endpointUrl: string = this.apiUrl + 'communities/';
+    return this.http.get(endpointUrl)
+  }
+
+  createPost(post: any) {
+    const endpointUrl: string = this.apiUrl + 'create_post/';
+    return this.http.post<any>(endpointUrl, post);
+  }
+
 }
