@@ -64,7 +64,6 @@ export class PostComponent implements OnInit {
   }
 
 
-
   //Actualiza el aura con la api para que luego el otro metodo updateAura lo carge en el front
   updateAura(action: string): void {
     if (action === 'sumar') {
@@ -89,5 +88,10 @@ export class PostComponent implements OnInit {
     }
   }
 
+
+
+  toggleFollow(): void {
+    this.post.on_community = this.post.on_community === "true" ? "false" : "true";
+  }
 
 }

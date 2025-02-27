@@ -44,7 +44,9 @@
             <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
           </ng-template>
           <ng-template #item let-item>
-            <a pRipple class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
+            <a pRipple class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100"
+               (click)="item.label === 'New' ? router.navigate(['/create-post']) : item.command ? item.command() : null"
+            >
               <span
                 class="pb-1"
                 [class]="item.icon"
@@ -59,7 +61,7 @@
           </ng-template>
           <ng-template #end *ngIf="registered">
             <button pRipple
-                    class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg cursor-pointer">
+                    class="relative overflow-hidden w-full border-0 flex items-center justify-evenly p-2 hover:bg-surface-100 rounded-lg">
               <p-avatar image="{{ user.image }}" class="" shape="circle"/>
               <span class="font-bold whitespace-nowrap pr-2"> {{ user.username }} </span>
             </button>
@@ -79,14 +81,17 @@
         <span class="block text-primary font-semibold w-full text-center">{{ item.label }}</span>
       </ng-template>
       <ng-template #item let-item>
-        <a pRipple (click)="item.command ? item.command() : null" class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
-          <span class="pb-1"
-                [class]="item.icon"
-                [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
+        <a pRipple
+           (click)="item.label === 'Sign In' ? router.navigate(['/login']) : item.label === 'Sign Up' ? router.navigate(['/register']) : item.command ? item.command() : null"
+           class="line flex items-center p-menu-item-link mb-2 border-b-1 border-b-gray-100">
+          <span
+            class="pb-1"
+            [class]="item.icon"
+            [ngClass]="{'text-red-300 ml-0.5': item.icon === 'pi pi-sign-out'}">
           </span>
           <span class="ml-2 mb-1"
                 [ngClass]="{'text-red-300': item.label === 'Logout'}">
-            {{ item.label }}
+                {{ item.label }}
           </span>
           <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge"/>
         </a>

@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private authSubscription!: Subscription;
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) { }
+  constructor(private authService: AuthService, private apiService: ApiService, protected router: Router) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.authStatus$.subscribe((status) => {
@@ -90,6 +90,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         {
           label: 'New',
           icon: 'pi pi-plus',
+          command: () => this.router.navigate(['/create-post'])
         },
         {
           label: 'Search',

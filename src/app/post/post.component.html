@@ -31,6 +31,7 @@
       <button
         type="button"
         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br hover:cursor-pointer rounded-lg text-sm px-3 py-1.5 text-center"
+        (click)="toggleFollow()"
       >
         {{ post.on_community === "true" ? "Unfollow" : "Follow" }}
       </button>
@@ -81,7 +82,7 @@
           id="aura-up"
           class="size-6 hover:cursor-pointer bg-gray-700 rounded-full transition-colors hover:bg-blue-400 sm:size-7"
           (click)="updateAura('sumar')"
-          >
+        >
           <svg
             class="p-1.5 rounded-full fill-blue-400 w-full h-full hover:fill-gray-900"
             height="800px"
@@ -113,7 +114,7 @@
           id="aura-down"
           class="size-6 hover:cursor-pointer bg-gray-700 rounded-full transition-colors hover:bg-red-400 sm:size-7"
           (click)="updateAura('restar')"
-          >
+        >
           <svg
             class="p-1.5 rounded-full rotate-180 fill-red-400 w-full h-full hover:fill-gray-900"
             height="800px"
@@ -184,7 +185,7 @@
         *ngFor="let tag of post.post_tags"
         [ngClass]="getLabelColor(tag)"
         class="px-2.5 py-1 rounded-lg border text-xs sm:text-sm text-center"
-        >{{ tag.tag | titlecase}} <!--cambie aqui-->
+      >{{ tag.tag | titlecase }} <!--cambie aqui-->
       </span>
     </div>
   </div>
