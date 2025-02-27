@@ -54,4 +54,10 @@ export class PostsViewComponent implements OnInit {
     this.post.aura = newAura
   }
 
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'  // Smooth scrolling
+    });
+  }
 }
