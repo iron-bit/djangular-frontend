@@ -1,167 +1,169 @@
 <div class="w-full h-screen flex items-center justify-center border-y border-gray-400">
-  <div class="relative bg-[rgb(14,23,40)] p-15 rounded-lg shadow-lg drop-shadow-[0px_0px_22px_rgba(34,177,249,1)]">
+  <div class="relative bg-[rgb(14,23,40)] p-15 rounded-lg shadow-lg drop-shadow-[0px_0px_15px_rgba(34,177,249,0.7)]">
 
-  <!-- Contenedor exterior -->
-  <div class="bg-[rgb(14,18,27)] p-8 rounded-lg shadow-lg border border-white max-w-4xl mx-auto">
+    <!-- Outer container -->
+    <div class="bg-[rgb(14,18,27)] p-8 rounded-lg shadow-lg border border-white max-w-4xl mx-auto">
 
-    <!-- Íconos en las esquinas -->
-    <div class="absolute top-0 left-0 w-8 h-8 bg-gray">
-        <span class="absolute top-0 left-0 translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full" aria-label="Icono"></span>
-        <span class="absolute top-0 left-0 translate-x-6 translate-y-6 w-8 h-8 bg-blue-500 rounded-full" aria-label="Icono"></span>
+      <!-- Icons in the corners -->
+      <div class="absolute top-0 left-0 w-8 h-8 bg-gray">
+        <span class="absolute top-0 left-0 translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full"
+              aria-label="Icon"></span>
+        <span class="absolute top-0 left-0 translate-x-6 translate-y-6 w-8 h-8 bg-blue-500 rounded-full"
+              aria-label="Icon"></span>
       </div>
 
       <div class="absolute top-0 right-0 w-8 h-8 bg-gray">
-        <span class="absolute top-0 right-0 -translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full" aria-label="Icono"></span>
-        <span class="absolute top-0 right-0 -translate-x-6 translate-y-6 w-8 h-8 bg-blue-500 rounded-full" aria-label="Icono"></span>
+        <span class="absolute top-0 right-0 -translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full"
+              aria-label="Icon"></span>
+        <span class="absolute top-0 right-0 -translate-x-6 translate-y-6 w-8 h-8 bg-blue-500 rounded-full"
+              aria-label="Icon"></span>
       </div>
 
       <div class="absolute bottom-0 left-0 w-8 h-8 bg-gray">
-        <span class="absolute top-0 left-0 translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full" aria-label="Icono"></span>
-        <span class="absolute top-0 left-0 translate-x-6 -translate-y-6 w-8 h-8 bg-blue-500 rounded-full" aria-label="Icono"></span>
+        <span class="absolute top-0 left-0 translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full"
+              aria-label="Icon"></span>
+        <span class="absolute top-0 left-0 translate-x-6 -translate-y-6 w-8 h-8 bg-blue-500 rounded-full"
+              aria-label="Icon"></span>
       </div>
 
       <div class="absolute bottom-0 right-0 w-8 h-8 bg-gray">
-        <span class="absolute top-0 right-0 -translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full" aria-label="Icono"></span>
-        <span class="absolute top-0 right-0 -translate-x-6 -translate-y-6 w-8 h-8 bg-blue-500 rounded-full" aria-label="Icono"></span>
+        <span class="absolute top-0 right-0 -translate-x-2 translate-y-2 w-4 h-4 bg-blue-300 rounded-full"
+              aria-label="Icon"></span>
+        <span class="absolute top-0 right-0 -translate-x-6 -translate-y-6 w-8 h-8 bg-blue-500 rounded-full"
+              aria-label="Icon"></span>
       </div>
 
-
-    <!-- Logo centrado arriba -->
-    <div class="flex justify-center mb-4 translate-x-5 -translate-y-23">
-        <!-- <img
-          src="/assests/logo_login.webp"
-          alt="Logo"
-          class="w-32 h-auto"
-        /> -->
+      <!-- Centered logo at the top -->
+      <div class="flex justify-center mb-4 translate-x-5 -translate-y-23">
       </div>
 
-    <!-- Formulario de registro -->
-    <form class="space-y-4" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <!-- Registration form -->
+      <form class="space-y-4" (ngSubmit)="onSubmit()" #registerForm="ngForm">
         <div>
-            <h6 class="text-white">Register</h6>
-            <p class="text-gray-500">
-              Completa los siguientes campos para registrar tu cuenta
-            </p>
+          <h6 class="text-white">Register</h6>
+          <p class="text-gray-500">
+            Complete the following fields to register your account
+          </p>
+        </div>
+
+        <!-- Input fields container -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Name field -->
+          <div>
+            <label for="nombre" class="block text-sm font-medium mb-1 text-gray-500">
+              Name
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              [(ngModel)]="registerData.name"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
           </div>
 
-      <!-- Contenedor de los campos de entrada -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <!-- Campo Nombre -->
-        <div>
-          <label for="nombre" class="block text-sm font-medium mb-1 text-gray-500">
-            Nombre
-          </label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="registerData.nombre"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
-            required
-          >
+          <!-- Nickname field -->
+          <div>
+            <label for="nickname" class="block text-sm font-medium mb-1 text-gray-500">
+              Username
+            </label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              [(ngModel)]="registerData.username"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
+          </div>
+
+          <!-- Email field -->
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1 text-gray-500">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="registerData.email"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
+          </div>
+
+          <!-- Birthdate field -->
+          <div>
+            <label for="birthdate" class="block text-sm font-medium mb-1 text-gray-500">
+              Birthdate
+            </label>
+            <input
+              type="date"
+              id="birthdate"
+              name="birthdate"
+              [(ngModel)]="registerData.birthdate"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
+          </div>
+
+          <!-- Password field -->
+          <div>
+            <label for="password" class="block text-sm font-medium mb-1 text-gray-500">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="registerData.password"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
+          </div>
+
+          <!-- Confirm Password field -->
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium mb-1 text-gray-500">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              [(ngModel)]="registerData.confirmPassword"
+              class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+              required
+            >
+          </div>
         </div>
 
-        <!-- Campo Nickname -->
-        <div>
-          <label for="nickname" class="block text-sm font-medium mb-1 text-gray-500">
-            Nickname
-          </label>
+        <!-- Checkbox Accept terms and conditions -->
+        <div class="flex items-center mt-4">
           <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            [(ngModel)]="registerData.username"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
+            type="checkbox"
+            id="terms"
+            name="terms"
+            [(ngModel)]="registerData.terms"
+            class="h-4 w-4 text-blue-600 border-gray-300 rounded"
             required
           >
-        </div>
-
-        <!-- Campo Email -->
-        <div>
-          <label for="email" class="block text-sm font-medium mb-1 text-gray-500">
-            Email
+          <label for="terms" class="ml-2 text-sm text-white">
+            Accept terms and conditions
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            [(ngModel)]="registerData.email"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
-            required
-          >
         </div>
 
-        <!-- Campo Fecha de Nacimiento -->
-        <div>
-          <label for="birthdate" class="block text-sm font-medium mb-1 text-gray-500">
-            Fecha de Nacimiento
-          </label>
-          <input
-            type="date"
-            id="birthdate"
-            name="birthdate"
-            [(ngModel)]="registerData.birthdate"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
-            required
-          >
+        <!-- Submit button -->
+        <div class="flex justify-end space-x-2">
+          <button type="button" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-3xl">
+            Login
+          </button>
+          <button type="submit" class="bg-white text-black hover:bg-gray-400 px-4 py-2 rounded-3xl">
+            Register
+          </button>
         </div>
-
-        <!-- Campo Contraseña -->
-        <div>
-          <label for="password" class="block text-sm font-medium mb-1 text-gray-500">
-            Contraseña
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="registerData.password"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
-            required
-          >
-        </div>
-
-        <!-- Campo Confirmar Contraseña -->
-        <div>
-          <label for="confirmPassword" class="block text-sm font-medium mb-1 text-gray-500">
-            Confirmar Contraseña
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            [(ngModel)]="registerData.confirmPassword"
-            class="w-full text-gray-100 px-3 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500"
-            required
-          >
-        </div>
-      </div>
-
-      <!-- Checkbox Aceptar términos y condiciones -->
-      <div class="flex items-center mt-4">
-        <input
-          type="checkbox"
-          id="terms"
-          name="terms"
-          [(ngModel)]="registerData.terms"
-          class="h-4 w-4 text-blue-600 border-gray-300 rounded"
-          required
-        >
-        <label for="terms" class="ml-2 text-sm text-white">
-          Aceptar términos y condiciones
-        </label>
-      </div>
-
-      <!-- Botón de envío -->
-      <div class="flex justify-end space-x-2">
-        <button type="button" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-3xl">
-            Iniciar Sesión
-        </button>
-        <button type="submit" class="bg-white text-black hover:bg-gray-400 px-4 py-2 rounded-3xl">
-            Registrarse
-        </button>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
   </div>
 </div>

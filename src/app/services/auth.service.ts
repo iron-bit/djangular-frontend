@@ -20,7 +20,7 @@ export class AuthService {
     const endpointUrl: string = this.apiUrl + 'register/';
 
     const enviarDatos = {
-      "first_name": registerData.nombre,
+      "first_name": registerData.name,
       "username": registerData.username,
       "email": registerData.email,
       "password": registerData.password,

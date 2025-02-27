@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class RegisterComponent {
   registerData = {
-    nombre: '',
+    name: '',
     username: '',
     email: '',
     password: '',
@@ -21,59 +22,84 @@ export class RegisterComponent {
     terms: false
   };
 
-  constructor(private apiService: AuthService) {
-
-    function convertirFecha(fecha: string): string | null {
-      const partes = fecha.split('/');
-      if (partes.length !== 3) return null; // Formato inválido
-      const [dia, mes, año] = partes;
-      // Retorna la fecha en formato ISO
-      return `${año}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
-    }
-
+  constructor(private apiService: AuthService, private router: Router) {
   }
 
   onSubmit(): void {
-    // Verifica que la contraseña y su confirmación coincidan
-    if (this.registerData.password !== this.registerData.confirmPassword) {
-      console.error('Las contraseñas no coinciden');
+    // Validate Terms and Conditions
+    if (!this.registerData.terms) {
+      alert('You must accept the terms and conditions.');
       return;
     }
 
-    // Calcula la edad a partir de la fecha de nacimiento
+    // Validate Passwords
+    if (this.registerData.password !== this.registerData.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    // Validate Email Format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(this.registerData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Validate Birthdate
     const birthDate = new Date(this.registerData.birthdate);
     const today = new Date();
 
-    console.log(birthDate);
-    console.log(today);
-    
-    
+    if (isNaN(birthDate.getTime())) {
+      alert('Invalid birthdate.');
+      return;
+    }
+
+    if (birthDate > today) {
+      alert('Birthdate cannot be in the future.');
+      return;
+    }
+
+    // Calculate Age
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
-    
-    // Crea un objeto con los datos a enviar, usando la edad calculada
+
+    // Prepare Data for Submission
     const dataToSend = {
-      nombre: this.registerData.nombre,
+      name: this.registerData.name,
       username: this.registerData.username,
       email: this.registerData.email,
       password: this.registerData.password,
-      age: age, // Se envía la edad en lugar de la fecha de nacimiento
-      terms: this.registerData.terms
+      age: age,
+      terms: this.registerData.terms,
     };
 
-    console.log('Registro enviado', dataToSend);
+    console.log('Sending registration data...', dataToSend);
 
-    this.apiService.register(dataToSend).subscribe(
-      (response) => {
-        console.log('Respuesta del servidor:', response);
+    // Call Registration API with error handling
+    this.apiService.register(dataToSend).subscribe({
+      next: (response) => {
+        alert('Registration successful. Welcome!');
+        console.log('Server response:', response);
+        this.router.navigate(['/login']);
       },
-      (error) => {
-        console.error('Error en la solicitud', error);
-      }
-    );
+      error: (error) => {
+        console.error('Error in the request:', error);
+
+        this.handleRegistrationError(error);
+      },
+    });
   }
-  
+
+  private handleRegistrationError(error: any): void {
+    if (error.status === 400) {
+      alert('Invalid data. Please check your information.');
+    } else if (error.status === 409) {
+      alert('User already exists. Try using a different email or username.');
+    } else {
+      alert('An error occurred during registration. Please try again later.');
+    }
+  }
 }
