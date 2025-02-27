@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Menu, MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
-import {ButtonModule} from 'primeng/button';
-import {PrimeIcons} from 'primeng/api';
-import {Badge} from 'primeng/badge';
-import {Avatar} from 'primeng/avatar';
-import {NgClass, NgIf} from '@angular/common';
-import {AuthService} from '../services/auth.service';
-import {ApiService} from '../services/api.service';
-import {Router, RouterLink} from '@angular/router';
-import {routes} from '../app.routes';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
+import { Router, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Menu, MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { Badge } from 'primeng/badge';
+import { Avatar } from 'primeng/avatar';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +17,7 @@ import {routes} from '../app.routes';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent implements OnInit, OnDestroy {
   registered = false;
   user = {
     'id': '1',
@@ -29,35 +27,45 @@ export class HeaderComponent implements OnInit {
     'image': 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg',
     'age': 25,
     'creation-time': '19-02-2025',
-  }
+  };
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) {
-  }
+  private authSubscription!: Subscription;
+
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.apiService.getUserInfo().subscribe({
-      next: (response: any) => {
-        this.user = response;
-        this.user.image = 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg';
-        this.registered = this.authService.isAuthenticated();
-      },
-      error: (err: any) => {
-        if (err.status === 401) {
-          this.registered = false;
-        }
+    this.authSubscription = this.authService.authStatus$.subscribe((status) => {
+      this.registered = status;
+      if (status) {
+        this.apiService.getUserInfo().subscribe({
+          next: (response: any) => {
+            this.user = response;
+            this.user.image = 'https://content.nationalgeographic.com.es/medio/2023/02/15/sus-incisivos-afilados-siempre-crecen_002dad44_230215174745_2000x1333.jpg';
+          },
+          error: (err: any) => {
+            if (err.status === 401) {
+              this.registered = false;
+            }
+          }
+        });
       }
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
   logout() {
     console.log('Logging out');
-    this.authService.logout()
-    this.registered = false;
+    this.authService.logout();
   }
 
   default_items = [{
-    separator: true
-  },
+      separator: true
+    },
     {
       label: 'Account',
       items: [
@@ -71,11 +79,11 @@ export class HeaderComponent implements OnInit {
         }
       ]
     }
-  ]
+  ];
 
   items = [{
-    separator: true
-  },
+      separator: true
+    },
     {
       label: 'Posts',
       items: [
@@ -100,7 +108,7 @@ export class HeaderComponent implements OnInit {
         {
           label: 'Your Posts',
           icon: 'pi pi-clipboard',
-          badge: '16', // Poner el número de posts
+          badge: '16',
         },
         {
           label: 'Logout',
@@ -111,7 +119,8 @@ export class HeaderComponent implements OnInit {
     },
     {
       separator: true
-    }];
+    }
+  ];
 
   onProfileClick() {
     this.router.navigate(['/profile']);
