@@ -9,6 +9,7 @@ import {NgClass, NgIf} from '@angular/common';
 import {AuthService} from '../services/auth.service';
 import {ApiService} from '../services/api.service';
 import {Router, RouterLink} from '@angular/router';
+import {routes} from '../app.routes';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
     'creation-time': '19-02-2025',
   }
 
-  constructor(private authService: AuthService, private apiService: ApiService) {
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    console.log('Logging out');
     this.authService.logout()
     this.registered = false;
   }
@@ -93,6 +95,7 @@ export class HeaderComponent implements OnInit {
         {
           label: 'Your Profile',
           icon: 'pi pi-user',
+          command: () => this.onProfileClick()
         },
         {
           label: 'Your Posts',
@@ -102,10 +105,15 @@ export class HeaderComponent implements OnInit {
         {
           label: 'Logout',
           icon: 'pi pi-sign-out',
+          command: () => this.logout()
         }
       ]
     },
     {
       separator: true
     }];
+
+  onProfileClick() {
+    this.router.navigate(['/profile']);
+  }
 }

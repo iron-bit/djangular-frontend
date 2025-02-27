@@ -31,8 +31,14 @@ export class LoginComponent {
     this.submitted = true;
     this.loginError = false;
 
+    // Validate input fields
+    if (!this.loginData.username || !this.loginData.password) {
+      this.loginError = true;
+      alert('Please enter both username/email and password.');
+      return;
+    }
 
-    // Llamamos al servicio para autenticar al usuario
+    // Call API service for authentication
     this.apiService.login(this.loginData.username, this.loginData.password).subscribe({
       next: () => {
         alert('Login successful!');
@@ -41,7 +47,14 @@ export class LoginComponent {
       error: (err) => {
         this.loginError = true;
         console.error('Login error:', err);
-        alert('Login error: ' + (err.message || 'Unknown error'));
+
+        if (err.status === 401) {
+          alert('Incorrect username or password.');
+        } else if (err.status === 500) {
+          alert('Server error. Please try again later.');
+        } else {
+          alert('Login error: ' + (err.message || 'Unknown error'));
+        }
       },
     });
   }
