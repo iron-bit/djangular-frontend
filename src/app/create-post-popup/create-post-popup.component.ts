@@ -36,10 +36,10 @@ export class CreatePostPopupComponent implements OnInit {
   postData = {
     title: '',
     content : '',
-    community_id: 0,
+    community_id: 1,
     is_adult: false,
     tag_ids: [] as number[],
-    attached_picture: 'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg',
+    attached_picture: '',
   };
 
   toggleCategory(category: keyof typeof this.selectedCategories) {
@@ -101,6 +101,7 @@ export class CreatePostPopupComponent implements OnInit {
 
   public createPost() {
     this.postData.community_id = Number(this.postData.community_id)
+
     console.log(this.postData);
     this.apiService.createPost(this.postData).subscribe({
       next: (response: any) => {

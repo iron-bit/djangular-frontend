@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-communities',
@@ -27,63 +28,35 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class CommunitiesComponent {
-  communitiesList = [
-    {
-      name: 'MasticaMuelas',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'RevientaCocos400',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'Community132123132',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'SpaceX',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'LaCommunidad',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'Community',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'SpaceX',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'LaCommunidad',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    },
-    {
-      name: 'Community',
-      image: 'assets/1.jpg',
-      members: '123.123.123',
-    }
-  ];
+
+  constructor(private apiService: ApiService) {}
+
+  public communities = []
 
   visibleItems = 4;
   showAllCommunities = false;
 
   toggleShowCommunities() {
     this.showAllCommunities = !this.showAllCommunities;
-    this.visibleItems = this.showAllCommunities ? this.communitiesList.length : 4;
+    this.visibleItems = this.showAllCommunities ? this.communities.length : 4;
   }
 
   get visibleCommunities() {
-    return this.communitiesList.slice(0, this.visibleItems);
+    return this.communities.slice(0, this.visibleItems);
   }
+
+  ngOnInit(): void {
+    this.apiService.getCommunities().subscribe({
+      next: (response: any) => {
+        this.communities = response;
+        console.log(this.communities)
+      },
+      error: (err: any) => {
+        if (err.status == 400) {
+          console.error('Err', err);
+        }
+      }
+    })
+  }
+
 }
