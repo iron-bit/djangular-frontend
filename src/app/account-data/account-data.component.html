@@ -1,4 +1,5 @@
-<div class="bg-gradient-to-b from-gray-900 to-gray-800 p-6 rounded-xl shadow-xl max-w-3xl mx-auto">
+<div class="w-full h-full min-h-[40vh] border-y border-gray-400 flex justify-center items-center">
+  <div class="w-full bg-gradient-to-b from-gray-900 to-gray-800 p-6 rounded-xl shadow-xl max-w-3xl mx-auto">
     <!-- Contenedor principal -->
     <div class="flex flex-col sm:flex-col md:flex-col lg:flex-row items-center lg:items-start">
       <!-- Imagen de perfil -->
@@ -14,10 +15,10 @@
           class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white cursor-pointer"
         >
           Cambiar Imagen
-          <input type="file" class="hidden" (change)="onFileChange($event)" />
+          <input type="file" class="hidden" (change)="onFileChange($event)"/>
         </label>
       </div>
-    
+
       <!-- Información del perfil -->
       <div class="flex-1 mt-6 lg:mt-0 lg:ml-6 w-full">
         <div class="grid grid-cols-1 gap-4 text-white">
@@ -86,4 +87,6 @@
       </div>
     </div>
   </div>
-  
+</div>
+<app-posts-view></app-posts-view>
+

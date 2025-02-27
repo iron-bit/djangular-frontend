@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import {PostsViewComponent} from '../posts-view/posts-view.component';
 
 interface User {
   fullName: string;
@@ -15,7 +16,7 @@ interface User {
 
 @Component({
   selector: 'app-account-data',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, PostsViewComponent],
   templateUrl: './account-data.component.html',
   styleUrls: ['./account-data.component.css']  // Asegúrate de usar "styleUrls" (con s)
 })
