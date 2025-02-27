@@ -50,4 +50,8 @@ export class PostsViewComponent implements OnInit {
     });
   }
 
+  updateAura(newAura: number): void {
+    this.post.aura = newAura
+  }
+
 }
