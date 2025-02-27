@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-create-post-popup',
@@ -8,7 +9,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './create-post-popup.component.html',
   styleUrl: './create-post-popup.component.css'
 })
-export class CreatePostPopupComponent {
+export class CreatePostPopupComponent implements OnInit {
+
+  constructor(private apiService: ApiService) {}
+
   userAvatar: string = 'https://img.freepik.com/vector-gratis/juego-joystick-tecnologia-deportiva_138676-2045.jpg';
 
   selectedCategories = {
@@ -19,15 +23,13 @@ export class CreatePostPopupComponent {
     art: false,
   };
 
-  datosDelPost = {
+  postData = {
     title: '',
     description: '',
-    comunity: '',
+    community: '',
     selectedCategories: [],
     image: '',
   }
-
-
 
   toggleCategory(category: keyof typeof this.selectedCategories) {
     this.selectedCategories[category] = !this.selectedCategories[category];
@@ -54,6 +56,23 @@ export class CreatePostPopupComponent {
     } else {
       console.error('No se ha seleccionado ningún archivo.');
     }
+  }
+
+  //
+  public communities = []
+
+  ngOnInit(): void {
+    this.apiService.getCommunities().subscribe({
+      next: (response: any) => {
+        this.communities = response;
+        console.log(this.communities)
+      },
+      error: (err: any) => {
+        if (err.status == 400) {
+          console.error('Err', err);
+        }
+      }
+    })
   }
 
 }

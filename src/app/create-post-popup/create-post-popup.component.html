@@ -1,58 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Blueddit</title>
-</head>
-<body class="bg-[#0f172a] flex items-center justify-center h-screen">
-    <app-create-post-popup></app-create-post-popup>
-</body>
-</html>
-
-<!-- create-post-popup.component.html -->
-<div class="border border-blue-500 p-6 rounded-lg w-full max-w-3xl bg-[#0d1321] text-white relative">
-    <div class="flex justify-between items-center mb-4">
-        <div class="flex justify-start mb-4">
-            <img
-              src="/assets/logo_footer.png"
-              alt="Logo"
-              class="w-32 h-auto"
-            />
-          </div>
-        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-500">
-            <img [src]="userAvatar" alt="User Avatar" class="w-full h-full object-cover">
+<div class="h-screen flex items-center justify-center">
+    <div class="border border-blue-500 p-6 rounded-lg w-full max-w-3xl bg-[#0d1321] text-white relative">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex justify-start mb-4">
+                <img
+                src="/assets/logo_footer.png"
+                alt="Logo"
+                class="w-32 h-auto"
+                />
+            </div>
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-500">
+                <img [src]="userAvatar" alt="User Avatar" class="w-full h-full object-cover">
+            </div>
         </div>
-    </div>
-    
-    <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
-        <input type="text" [(ngModel)]="datosDelPost.comunity" placeholder="Título" class="w-full p-2 rounded-md bg-[#1e293b] text-white mb-3 sm:mb-0 focus:outline-none">
-        <select [(ngModel)]="datosDelPost.comunity" class="w-full p-2 rounded-md bg-[#1e293b] text-white focus:outline-none">
-            <option>Escoge una comunidad</option>
-            <option>Community 1</option>
-            <option>Community 2</option>
-        </select>
-    </div>
 
-    <div class="flex flex-wrap gap-2 mb-3">
-        <span (click)="toggleCategory('science')" [ngClass]="{'bg-green-600': selectedCategories.science, 'bg-gray-700': !selectedCategories.science}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Science</span>
-        <span (click)="toggleCategory('social')" [ngClass]="{'bg-blue-700': selectedCategories.social, 'bg-gray-700': !selectedCategories.social}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Social</span>
-        <span (click)="toggleCategory('tecnology')" [ngClass]="{'bg-red-500': selectedCategories.tecnology, 'bg-gray-700': !selectedCategories.tecnology}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Tecnology</span>
-        <span (click)="toggleCategory('health')" [ngClass]="{'bg-yellow-500': selectedCategories.health, 'bg-gray-700': !selectedCategories.health}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Health</span>
-        <span (click)="toggleCategory('art')" [ngClass]="{'bg-pink-400': selectedCategories.art, 'bg-gray-700': !selectedCategories.art}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Art</span>
-    </div>
+        <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
+            <input type="text" [(ngModel)]="postData.title" placeholder="Título" class="w-full p-2 rounded-md bg-[#1e293b] text-white mb-3 sm:mb-0 focus:outline-none">
+            <select [(ngModel)]="postData.community" class="w-full p-2 rounded-md bg-[#1e293b] text-white focus:outline-none">
+                <option *ngFor="let community of communities">{{ community['name'] }}</option>
+            </select>
+        </div>
 
-    <textarea [(ngModel)]="datosDelPost.description" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
-    
-    <div class="flex items-center mt-2">
-        <button (click)="fileInput.click()" class="p-2 flex items-center justify-center mr-2 -translate-y-13 -translate-2">
-            <img src="/assets/upload-image.svg" alt="Subir" class="ml-1 border rounded-sm hover:bg-gray-600 transition-colors">
-        </button>
-        <input #fileInput type="file" accept=".png, .jpg, .jpeg, .webp, .avif" (change)="onFileSelected($event)" class="hidden">
-    </div>
-    
-    <div class="flex items-center justify-center mt-4">
-    <button class="justify-around p-1 px-3 border-1 rounded-3xl border-gray-500 w-30 hover:border-t-1 hover:border-blue-400 hover:text-gray-200 transition-colors duration-300">Publicar</button>
+        <div class="flex flex-wrap gap-2 mb-3">
+            <span (click)="toggleCategory('science')" [ngClass]="{'bg-green-600': selectedCategories.science, 'bg-gray-700': !selectedCategories.science}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Science</span>
+            <span (click)="toggleCategory('social')" [ngClass]="{'bg-blue-700': selectedCategories.social, 'bg-gray-700': !selectedCategories.social}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Social</span>
+            <span (click)="toggleCategory('tecnology')" [ngClass]="{'bg-red-500': selectedCategories.tecnology, 'bg-gray-700': !selectedCategories.tecnology}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Tecnology</span>
+            <span (click)="toggleCategory('health')" [ngClass]="{'bg-yellow-500': selectedCategories.health, 'bg-gray-700': !selectedCategories.health}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Health</span>
+            <span (click)="toggleCategory('art')" [ngClass]="{'bg-pink-400': selectedCategories.art, 'bg-gray-700': !selectedCategories.art}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Art</span>
+        </div>
+
+        <textarea [(ngModel)]="postData.description" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
+
+        <div class="flex items-center mt-2">
+            <button (click)="fileInput.click()" class="p-2 flex items-center justify-center mr-2 -translate-y-13 -translate-2">
+                <img src="/assets/upload-image.svg" alt="Subir" class="ml-1 border rounded-sm hover:bg-gray-600 transition-colors">
+            </button>
+            <input #fileInput type="file" accept=".png, .jpg, .jpeg, .webp, .avif" (change)="onFileSelected($event)" class="hidden">
+        </div>
+
+        <div class="flex items-center justify-center mt-4">
+        <button (click)="createPost()" class="justify-around p-1 px-3 border-1 rounded-3xl border-gray-500 w-30 hover:border-t-1 hover:border-blue-400 hover:text-gray-200 transition-colors duration-300 hover:cursor-pointer">Publicar</button>
+        </div>
     </div>
 </div>

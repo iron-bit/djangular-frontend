@@ -34,4 +34,9 @@ export class ApiService {
     throw new Error('Error en updateAura');
   }
 
+  getCommunities() {
+    const endpointUrl: string = this.apiUrl + 'communities/';
+    return this.http.get(endpointUrl)
+  }
+
 }
