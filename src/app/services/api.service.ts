@@ -39,4 +39,9 @@ export class ApiService {
     return this.http.get(endpointUrl)
   }
 
+  createPost(post: any) {
+    const endpointUrl: string = this.apiUrl + 'create_post/';
+    return this.http.post<any>(endpointUrl, post);
+  }
+
 }

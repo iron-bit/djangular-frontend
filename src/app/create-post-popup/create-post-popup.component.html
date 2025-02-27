@@ -15,8 +15,8 @@
 
         <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
             <input type="text" [(ngModel)]="postData.title" placeholder="Título" class="w-full p-2 rounded-md bg-[#1e293b] text-white mb-3 sm:mb-0 focus:outline-none">
-            <select [(ngModel)]="postData.community" class="w-full p-2 rounded-md bg-[#1e293b] text-white focus:outline-none">
-                <option *ngFor="let community of communities">{{ community['name'] }}</option>
+            <select [(ngModel)]="postData.community_id" class="w-full p-2 rounded-md bg-[#1e293b] text-white focus:outline-none">
+                <option *ngFor="let community of communities; let i = index" [value]="i + 1">{{ community['name'] }}</option>
             </select>
         </div>
 
@@ -28,7 +28,7 @@
             <span (click)="toggleCategory('art')" [ngClass]="{'bg-pink-400': selectedCategories.art, 'bg-gray-700': !selectedCategories.art}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Art</span>
         </div>
 
-        <textarea [(ngModel)]="postData.description" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
+        <textarea [(ngModel)]="postData.content" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
 
         <div class="flex items-center mt-2">
             <button (click)="fileInput.click()" class="p-2 flex items-center justify-center mr-2 -translate-y-13 -translate-2">
@@ -37,8 +37,17 @@
             <input #fileInput type="file" accept=".png, .jpg, .jpeg, .webp, .avif" (change)="onFileSelected($event)" class="hidden">
         </div>
 
+        <div class="w-full flex items-start">
+            <label>
+              <input type="checkbox"
+                     [(ngModel)]="postData.is_adult"
+                     class="checkbox">
+              NSFW content
+            </label>
+          </div>
+
         <div class="flex items-center justify-center mt-4">
-        <button (click)="createPost()" class="justify-around p-1 px-3 border-1 rounded-3xl border-gray-500 w-30 hover:border-t-1 hover:border-blue-400 hover:text-gray-200 transition-colors duration-300 hover:cursor-pointer">Publicar</button>
+            <button (click)="createPost()" class="justify-around p-1 px-3 border-1 rounded-3xl border-gray-500 w-30 hover:border-t-1 hover:border-blue-400 hover:text-gray-200 transition-colors duration-300 hover:cursor-pointer">Publicar</button>
         </div>
     </div>
 </div>
