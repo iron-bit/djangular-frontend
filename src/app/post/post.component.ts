@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { ApiService } from '../services/api.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-post',
@@ -24,7 +24,8 @@ export class PostComponent implements OnInit {
 
   public nsfw: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+  }
 
   ngOnInit(): void {
     console.log('POST ID de prueba', this.post.id)
@@ -49,10 +50,10 @@ export class PostComponent implements OnInit {
     const now = new Date();
     const created = new Date(this.post.creation_date);
     const diffMs = now.getTime() - created.getTime();
-    const diffHours = diffMs / (1000 * 60 * 60); 
+    const diffHours = diffMs / (1000 * 60 * 60);
 
     if (diffHours < 24) {
-      const diffMinutes = Math.floor(diffMs / (1000 * 60)); 
+      const diffMinutes = Math.floor(diffMs / (1000 * 60));
       if (diffHours >= 1) {
         return `${Math.floor(diffHours)} hour${Math.floor(diffHours) !== 1 ? 's' : ''} ago`;
       } else {
@@ -62,14 +63,15 @@ export class PostComponent implements OnInit {
     return null;
   }
 
-  //Actualiza el aura con la api para que luego el otro metodo updateAura lo carge en el front 
+  //Actualiza el aura con la api para que luego el otro metodo updateAura lo carge en el front
   updateAura(action: string): void {
     if (action === 'sumar') {
       this.apiService.updateAura(this.post.id, 'sumar').subscribe(
         (response) => {
           if (response && response.post && typeof response.post.aura === 'number') {
-            this.auraUpdated.emit(response.post.aura);  
-          } 
+            this.post.aura = response.post.aura;
+            this.auraUpdated.emit(response.post.aura);
+          }
         },
       );
     } else if (action === 'restar') {
@@ -77,7 +79,8 @@ export class PostComponent implements OnInit {
         (response) => {
           console.log('Response:', response);
           if (response && response.post && typeof response.post.aura === 'number') {
-            this.auraUpdated.emit(response.post.aura); 
+            this.post.aura = response.post.aura;
+            this.auraUpdated.emit(response.post.aura);
           }
         }
       );
