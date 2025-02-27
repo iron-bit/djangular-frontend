@@ -28,7 +28,7 @@
             <span (click)="toggleCategory('art')" [ngClass]="{'bg-pink-400': selectedCategories.art, 'bg-gray-700': !selectedCategories.art}" class="text-white px-3 py-1 rounded-full text-sm cursor-pointer">Art</span>
         </div>
 
-        <textarea [(ngModel)]="postData.content" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
+        <textarea [(ngModel)]="postData.content" maxlength="100" placeholder="What are you thinking?" class="w-full p-3 rounded-md bg-[#1e293b] text-white h-28 focus:outline-none"></textarea>
 
         <div class="flex items-center mt-2">
             <button (click)="fileInput.click()" class="p-2 flex items-center justify-center mr-2 -translate-y-13 -translate-2">
@@ -37,11 +37,14 @@
             <input #fileInput type="file" accept=".png, .jpg, .jpeg, .webp, .avif" (change)="onFileSelected($event)" class="hidden">
         </div>
 
-        <div class="w-full flex items-start">
+        <input [(ngModel)]="postData.attached_picture" type="text" placeholder="Image URL" class="w-full p-3 rounded-md bg-[#1e293b] text-white focus:outline-none"/>
+
+        <div class="w-full flex items-start mt-2">
             <label>
               <input type="checkbox"
                      [(ngModel)]="postData.is_adult"
-                     class="checkbox">
+                     class="checkbox"
+                     [disabled]="!postData.attached_picture">
               NSFW content
             </label>
           </div>
